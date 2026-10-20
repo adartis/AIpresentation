@@ -1,0 +1,1218 @@
+<!doctype html><html><head><meta charset="utf8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style><script type='text/javascript' nonce='yUHM9nqScZm8gHTNNw1vzg==' src='https://3217bf2b-2c74-4a73-afbe-c154587d08d2.frame.claudeusercontent.com/N-CxZ2xBqY5Z7F__UYnPWtYMoJ83oPHBvrt-loNVXMWybhjc2WUHjo0GXdvjL-naMkR7Zi2v-O5scJmeBIwEcN1EOnKMCy6Jv7PWPP2JXo0TmFVri8Yi38ADVfStJAzh40PHts7MrP144oWUQoJWhFzUG4VsdR_YjTyrmWtNN4S4A-RksJmoZzyUrKtCylpM38KtEzxIcdbj_-BbLA82UvSRnN4bp9SNc3-N8nB2bfAR1sxUYwIywQ81Hd-d1OalhXoHB5xqjFplPPOIpm_4NvdZhSFNdFRq9IFWR6qDusRhaSdOOhsT4I4LGUy-HPc1IU8KiX2Svgj7AiiZ5ykQbNovfDbr3SnkX51Kifcx2pnUNA0-E6q2gR8oj3lMC-b0vg3Ni9z7qwrkzK7XAp-Ce_LFhx884SeAyUu0wPmHxSmf19WVJH00zJYJtX3yKmfJVD1EeCEZjutd5dqgRCIUnoyyp4m9naeHRqaIegLl__n3v2AVKjQenl7gUFCAm2vEcSOj2JWlaAvZ05PJ7rqxEQW1qx5OlOt_5hB9AubifCCw_vYqw4RIfzzBB8qBemySCSHqacFHFZQs3ylmiQOurR6Mi7ol52dweOHa532Gx5pviotso6wDKLAHsBmJBSXAoK9_0m6RBjqjNY5ufjd5vF9WppzgIFa6vJwU08IKYT6YUUBxfjrcNfrhNjsSp685q1s4nZOaLMqlpRcQYwLhxg'></script></head><body>
+<title>Working with AI</title>
+<meta name="description" content="Team Europe: key concepts for working with AI to automate and build">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caladea:ital,wght@0,400;0,700;1,400&amp;family=Carlito:ital,wght@0,400;0,700;1,400;1,700&amp;display=swap">
+<style>
+/* A fixed 1280x720 slide canvas, scaled to fit, with a slim control bar beneath.
+   Slides keep the deck's palette in every theme; the stage around them follows the viewer's theme. */
+:root {
+  --stage: #D5DBE4; --bar-bg: #FFFFFF; --bar-fg: #14213D; --bar-muted: #5B6578; --bar-line: #C3CAD6;
+  --panel-bg: #FFFFFF; --panel-fg: #1E293B; --focus: #C98A2B;
+  /* deck palette (fixed) */
+  --navy: #14213D; --navy-2: #1E3A6E; --blue: #5B7DB1; --sky: #8FA8D1; --ochre: #C98A2B; --ochre-dk: #A8701E;
+  --mist: #EEF2F7; --ink: #1E293B; --slate: #64748B; --rule: #CBD3DE; --give: #2E7D6B; --cost: #B4532A; --cost-lt: #E2A890;
+  --serif: Cambria, Caladea, Georgia, "Times New Roman", serif;
+  --sans: Calibri, Carlito, Arial, "Helvetica Neue", sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) { --stage: #070C18; --bar-bg: #0F1729; --bar-fg: #E6EBF3; --bar-muted: #93A0B8; --bar-line: #26324A; --panel-bg: #111A2E; --panel-fg: #DCE3EE; color-scheme: dark; }
+}
+:root[data-theme="dark"] { --stage: #070C18; --bar-bg: #0F1729; --bar-fg: #E6EBF3; --bar-muted: #93A0B8; --bar-line: #26324A; --panel-bg: #111A2E; --panel-fg: #DCE3EE; color-scheme: dark; }
+
+html, body { height: 100%; }
+html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+body { margin: 0; background: var(--stage); color: var(--bar-fg); font-family: var(--sans); overflow: hidden; touch-action: manipulation; }
+.app { height: 100%; display: flex; flex-direction: column; }
+.stage { flex: 1; min-height: 0; display: grid; place-items: center; padding: 12px 16px; position: relative; }
+.frame { position: relative; box-shadow: 0 6px 30px rgba(10,20,40,.25); }
+.deck *, .deck *::before, .deck *::after { box-sizing: border-box; }
+.deck { position: absolute; top: 0; left: 0; width: 1280px; height: 720px; transform-origin: 0 0; overflow: hidden; background: #fff; }
+
+/* control bar */
+.controls { flex: none; height: 48px; display: flex; align-items: center; justify-content: center; gap: 8px; background: var(--bar-bg); border-top: 1px solid var(--bar-line); padding-inline: 16px; padding-bottom: env(safe-area-inset-bottom, 0px); transition: opacity .25s; }
+.controls button { font: 700 14px/1 var(--sans); color: var(--bar-fg); background: transparent; border: 1px solid var(--bar-line); border-radius: 6px; height: 32px; min-width: 36px; padding: 0 12px; cursor: pointer; }
+.controls button:hover { border-color: var(--bar-muted); }
+.controls .count { font: 700 14px/1 var(--sans); color: var(--bar-muted); min-width: 64px; text-align: center; font-variant-numeric: tabular-nums; }
+.controls .spacer { width: 12px; }
+.controls .hint { font-size: 13px; color: var(--bar-muted); margin-left: 8px; }
+.controls .iostip { font-size: 12px; color: var(--bar-muted); display: none; }
+.app.ios .controls .iostip { display: inline; }
+@media (max-width: 640px) { .controls .hint, .controls .spacer { display: none; } }
+.app.fs .controls { position: fixed; left: 0; right: 0; bottom: 0; opacity: 0; }
+.app.fs.show-ui .controls { opacity: 1; }
+:focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; }
+
+/* phones */
+.rotate { position: fixed; inset: 0; z-index: 50; display: none; flex-direction: column; align-items: center; justify-content: center; gap: 18px; padding: 32px 24px; text-align: center; background: var(--navy); color: #fff; padding-top: calc(32px + env(safe-area-inset-top, 0px)); padding-bottom: calc(32px + env(safe-area-inset-bottom, 0px)); }
+.rotate .phone { width: 64px; height: 104px; border: 4px solid #fff; border-radius: 12px; position: relative; animation: turn 2.4s ease-in-out infinite; }
+.rotate .phone::after { content: ""; position: absolute; left: 50%; bottom: 7px; width: 14px; height: 4px; margin-left: -7px; border-radius: 2px; background: var(--ochre); }
+@keyframes turn { 0%, 25% { transform: rotate(0deg); } 55%, 85% { transform: rotate(-90deg); } 100% { transform: rotate(0deg); } }
+@media (prefers-reduced-motion: reduce) { .rotate .phone { animation: none; transform: rotate(-90deg); } }
+.rotate .eyebrow { color: var(--ochre); margin-top: 18px; }
+.rotate h2 { font-size: 30px; color: #fff; margin: 0; }
+.rotate p { margin: 0; max-width: 300px; font-size: 17px; line-height: 1.5; color: var(--sky); }
+.rotate button { margin-top: 10px; font: 700 15px/1 var(--sans); color: #fff; background: transparent; border: 1px solid var(--sky); border-radius: 6px; padding: 12px 18px; cursor: pointer; }
+@media (orientation: portrait) and (max-width: 760px) { .app:not(.portrait-ok) .rotate { display: flex; } }
+@media (orientation: landscape) and (max-height: 520px) {
+  .stage { padding: 4px max(8px, env(safe-area-inset-right, 0px)) 4px max(8px, env(safe-area-inset-left, 0px)); }
+  .frame { box-shadow: none; }
+  .controls { height: 38px; gap: 6px; }
+  .controls button { height: 28px; min-width: 32px; padding: 0 10px; font-size: 13px; }
+  .controls .hint, .controls .spacer { display: none; }
+  .notes { max-height: 55%; font-size: 14px; bottom: 6px; left: 8px; right: 8px; }
+}
+
+/* notes */
+.notes { position: absolute; left: 16px; right: 16px; bottom: 12px; max-height: 40%; overflow: auto; background: var(--panel-bg); color: var(--panel-fg); border: 1px solid var(--bar-line); border-radius: 8px; padding: 14px 18px; font: 16px/1.5 var(--sans); box-shadow: 0 8px 30px rgba(0,0,0,.25); z-index: 5; white-space: pre-line; }
+.notes b { display: block; font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: var(--bar-muted); margin-bottom: 4px; }
+
+/* ---------- slides: common ---------- */
+.slide { position: absolute; inset: 0; padding: 56px 64px 0; background: #fff; color: var(--ink); font-family: var(--sans); opacity: 0; visibility: hidden; transition: opacity .22s ease, visibility 0s linear .22s; }
+.slide.active { opacity: 1; visibility: visible; transition: opacity .22s ease; }
+@media (prefers-reduced-motion: reduce) { .slide, .slide.active { transition: none; } }
+.slide.dark { background: var(--navy); color: #fff; }
+.eyebrow { font: 700 13px/1 var(--sans); letter-spacing: .2em; text-transform: uppercase; color: var(--ochre-dk); }
+.dark .eyebrow { color: var(--ochre); }
+h1, h2, h3 { font-family: var(--serif); font-weight: 700; margin: 0; text-wrap: balance; }
+h2 { font-size: 44px; line-height: 1.12; color: var(--navy); margin-top: 12px; }
+h2.two { font-size: 40px; }
+h2 a { color: inherit; text-decoration-thickness: 2px; text-underline-offset: 5px; }
+h2 a:hover { color: var(--navy-2); }
+.dark h2 { color: #fff; }
+.foot { position: absolute; left: 64px; right: 64px; bottom: 24px; display: flex; justify-content: space-between; font: 13px var(--sans); color: var(--slate); }
+.dark .foot { color: var(--sky); }
+.num { width: 30px; height: 30px; border-radius: 50%; background: var(--navy-2); color: #fff; display: grid; place-items: center; font: 700 15px/1 var(--sans); flex: none; }
+.num.ochre { background: var(--ochre); color: var(--navy); }
+.label { font: 700 12px/1 var(--sans); letter-spacing: .18em; text-transform: uppercase; }
+.panel { background: var(--mist); border-radius: 4px; }
+.darkcard { background: var(--navy); color: #fff; border-radius: 4px; }
+.abs { position: absolute; }
+.muted { color: var(--slate); }
+.ico { width: 46px; height: 46px; border-radius: 50%; background: var(--navy-2); display: grid; place-items: center; flex: none; }
+.ico svg { width: 24px; height: 24px; fill: none; stroke: #fff; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.ico.ochre { background: var(--ochre); }
+.ico.ochre svg { stroke: var(--navy); }
+.chip-btn { font: 700 13px/1 var(--sans); color: var(--navy); background: #fff; border: 1px solid var(--rule); border-radius: 4px; padding: 8px 12px; cursor: pointer; }
+.chip-btn:hover { border-color: var(--slate); }
+.clickhint { font-size: 13px; color: var(--slate); font-style: italic; }
+
+/* 1 cover */
+.s-cover h1 { position: absolute; left: 64px; top: 104px; width: 520px; font-size: 54px; line-height: 1.16; color: #fff; }
+.s-cover .eyebrow { position: absolute; left: 64px; top: 92px; }
+.s-cover .sub { position: absolute; left: 64px; top: 452px; width: 480px; font-size: 20px; line-height: 1.45; font-style: italic; color: #fff; }
+.s-cover .who { position: absolute; left: 64px; bottom: 80px; font-size: 18px; color: var(--sky); }
+.zones { position: absolute; left: 620px; top: 120px; width: 616px; height: 500px; }
+.zones .ring { position: absolute; left: 158px; top: 100px; width: 300px; height: 300px; border: 2px dashed rgba(143,168,209,.6); border-radius: 50%; }
+.zones .core { position: absolute; left: 248px; top: 190px; width: 120px; height: 120px; border-radius: 50%; background: var(--ochre); color: #fff; display: grid; place-items: center; font: 700 40px/1 var(--serif); }
+.zone { position: absolute; width: 262px; height: 128px; background: var(--navy-2); border-radius: 4px; padding: 20px 22px; display: flex; gap: 14px; align-items: flex-start; font: 700 18px/1.3 var(--sans); color: #fff; }
+.zone .num { width: 28px; height: 28px; font-size: 14px; }
+
+/* 2 agenda */
+.agenda { position: absolute; left: 64px; right: 64px; top: 190px; display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 44px; }
+.agenda button { position: relative; text-align: left; font: inherit; border: 0; cursor: pointer; background: var(--mist); color: var(--ink); border-radius: 4px; height: 316px; padding: 30px 30px; display: flex; flex-direction: column; transition: transform .15s, box-shadow .15s; }
+.agenda button:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(20,33,61,.15); }
+.agenda button.d { background: var(--navy); color: #fff; }
+.agenda .min { position: absolute; right: 30px; top: 38px; font-size: 15px; color: var(--slate); }
+.agenda .d .min { color: var(--ochre); }
+.agenda h3 { font-size: 30px; line-height: 1.2; color: var(--navy); margin-top: 34px; }
+.agenda .d h3 { color: #fff; }
+.agenda p { margin: auto 0 0; font-size: 17px; line-height: 1.45; color: var(--slate); }
+.agenda .d p { color: var(--sky); }
+.agenda .go { margin-top: 14px; font-size: 13px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--ochre-dk); }
+.agenda .d .go { color: var(--ochre); }
+.agenda button:not(:last-child)::after { content: ""; position: absolute; right: -32px; top: 50%; margin-top: -11px; border: 11px solid transparent; border-left: 14px solid var(--ochre); border-right: 0; }
+
+/* survey: filter chips */
+.filter { position: absolute; right: 64px; display: flex; gap: 6px; align-items: center; }
+.filter .lab { font-size: 13px; color: var(--slate); margin-right: 6px; }
+.filter button { font: 700 14px/1 var(--sans); color: var(--navy); background: #fff; border: 1px solid var(--rule); border-radius: 999px; padding: 8px 14px; cursor: pointer; }
+.filter button[aria-pressed="true"] { background: var(--navy); color: #fff; border-color: var(--navy); }
+.filter button:hover:not([aria-pressed="true"]) { border-color: var(--slate); }
+
+/* 3 survey headline */
+.stats3 { position: absolute; left: 64px; right: 64px; top: 176px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+.stats3 .panel { padding: 22px 26px 22px; }
+.stats3 .big { font: 700 54px/1 var(--serif); color: var(--navy); }
+.stats3 .big small { font-size: 26px; color: var(--slate); font-weight: 400; }
+.stats3 p { margin: 10px 0 0; font-size: 17px; line-height: 1.4; color: var(--slate); }
+.quotes2 { position: absolute; left: 64px; right: 64px; top: 372px; display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.qcard { border: 1px solid var(--rule); border-radius: 4px; padding: 22px 26px; min-height: 196px; }
+.qcard .head { display: flex; align-items: center; gap: 12px; }
+.qcard .head .label { color: var(--ochre-dk); }
+.qmark { font: 700 54px/0.6 var(--serif); color: var(--ochre); height: 26px; }
+.qcard p { margin: 14px 0 0; font: italic 18px/1.45 var(--sans); color: var(--ink); }
+.src { position: absolute; left: 64px; right: 64px; top: 618px; font-size: 14px; color: var(--slate); }
+
+/* survey charts */
+.whopanel { position: absolute; left: 64px; top: 176px; width: 330px; height: 470px; padding: 24px 26px; }
+.whopanel .big { font: 700 64px/1 var(--serif); color: var(--navy); }
+.whopanel .bigsub { font-size: 16px; color: var(--slate); margin-top: 4px; }
+.whopanel .label { color: var(--navy-2); margin: 22px 0 10px; }
+.mini { display: grid; grid-template-columns: 112px 1fr 22px; gap: 6px 10px; align-items: center; font-size: 15px; }
+.mini i { display: block; height: 12px; background: var(--navy-2); border-radius: 2px; }
+.mini b { text-align: right; font-variant-numeric: tabular-nums; }
+.chart { position: absolute; }
+.chart .label { color: var(--navy-2); margin-bottom: 14px; display: flex; justify-content: space-between; }
+.chart .label small { font: 400 13px var(--sans); letter-spacing: 0; text-transform: none; color: var(--slate); }
+.hb { display: grid; grid-template-columns: var(--lw, 170px) 1fr 40px; gap: 8px 12px; align-items: center; font-size: 16px; }
+.hb .t { height: 18px; background: #E4E9F0; border-radius: 2px; position: relative; overflow: hidden; }
+.hb .t i { position: absolute; left: 0; top: 0; bottom: 0; background: var(--navy-2); border-radius: 2px; transition: width .35s ease; }
+.hb .t i.o { background: var(--ochre); }
+.hb .v { font-weight: 700; color: var(--navy); font-variant-numeric: tabular-nums; }
+.stk { display: grid; grid-template-columns: 110px 1fr; gap: 10px 12px; align-items: center; font-size: 16px; }
+.stk .t { display: flex; height: 22px; border-radius: 2px; overflow: hidden; background: #E4E9F0; }
+.stk .t i { display: block; height: 100%; transition: width .35s ease; font: 700 12px/22px var(--sans); color: #fff; text-align: center; font-style: normal; overflow: hidden; }
+.lv0 { background: #D8DEE7; } .lv1 { background: var(--sky); } .lv2 { background: var(--blue); } .lv3 { background: var(--navy-2); }
+.stk .t i.lv0 { color: var(--slate); }
+.legend { display: flex; gap: 14px; flex-wrap: wrap; font-size: 13px; color: var(--slate); margin-top: 12px; }
+.legend span { display: inline-flex; align-items: center; gap: 6px; }
+.legend span::before { content: ""; width: 12px; height: 12px; border-radius: 2px; background: var(--c); }
+@media (prefers-reduced-motion: reduce) { .hb .t i, .stk .t i, .dv i { transition: none; } }
+
+/* 5 diverging statements */
+.dvrows { position: absolute; left: 64px; right: 64px; top: 232px; display: grid; gap: 14px; }
+.dvrow { display: grid; grid-template-columns: 340px 1fr 170px; gap: 24px; align-items: center; min-height: 58px; }
+.dvrow .q { font-size: 19px; line-height: 1.3; color: var(--ink); font-weight: 700; }
+.dv { position: relative; height: 34px; }
+.dv::after { content: ""; position: absolute; left: 50%; top: -6px; bottom: -6px; width: 2px; margin-left: -1px; background: var(--navy); }
+.dv .l, .dv .r { position: absolute; top: 0; bottom: 0; display: flex; }
+.dv .l { right: 50%; flex-direction: row-reverse; }
+.dv .r { left: 50%; }
+.dv i { display: block; height: 100%; transition: width .35s ease; font: 700 13px/34px var(--sans); color: #fff; text-align: center; font-style: normal; overflow: hidden; }
+.sd { background: var(--cost); } .di { background: var(--cost-lt); color: var(--navy) !important; } .ag { background: var(--blue); } .sa { background: var(--navy-2); }
+.dvrow .rd { font-size: 16px; color: var(--slate); line-height: 1.3; }
+.dvrow .rd b { font: 700 26px/1 var(--serif); color: var(--navy); display: block; }
+.dvhead { position: absolute; left: 428px; width: 616px; top: 206px; display: flex; justify-content: space-between; font: 700 12px/1 var(--sans); letter-spacing: .14em; text-transform: uppercase; }
+.dvhead .a { color: var(--cost); } .dvhead .b { color: var(--navy-2); }
+.insight { position: absolute; left: 64px; right: 64px; top: 556px; padding: 18px 26px; font-size: 19px; line-height: 1.4; }
+.insight strong { color: var(--ochre); }
+
+/* 6 barriers */
+.trio { position: absolute; left: 64px; right: 64px; top: 210px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+.trio .panel { padding: 16px 22px; display: flex; align-items: center; gap: 16px; }
+.trio .big { font: 700 42px/1 var(--serif); color: var(--navy); min-width: 58px; font-variant-numeric: tabular-nums; }
+.trio p { margin: 0; font-size: 16px; line-height: 1.35; color: var(--slate); }
+
+/* 7 own words */
+.themes { position: absolute; left: 64px; top: 180px; width: 312px; display: grid; gap: 8px; }
+.themes button { display: flex; justify-content: space-between; align-items: center; text-align: left; font: 700 17px/1.25 var(--sans); color: var(--navy); background: var(--mist); border: 0; border-left: 4px solid transparent; border-radius: 4px; padding: 14px 16px; cursor: pointer; min-height: 56px; }
+.themes button span:last-child { font: 400 14px var(--sans); color: var(--slate); white-space: nowrap; margin-left: 10px; }
+.themes button[aria-selected="true"] { background: var(--navy); color: #fff; border-left-color: var(--ochre); }
+.themes button[aria-selected="true"] span:last-child { color: var(--sky); }
+.qwall { position: absolute; left: 404px; right: 64px; top: 180px; display: grid; gap: 12px; }
+.qwall .q { border-left: 4px solid var(--ochre); background: #fff; box-shadow: 0 0 0 1px var(--rule) inset; border-radius: 0 4px 4px 0; padding: 16px 22px; font: italic 18px/1.45 var(--sans); color: var(--ink); animation: qin .3s ease both; }
+.qwall .q:nth-child(2) { animation-delay: .06s; } .qwall .q:nth-child(3) { animation-delay: .12s; }
+@keyframes qin { from { opacity: 0; transform: translateY(6px); } }
+@media (prefers-reduced-motion: reduce) { .qwall .q { animation: none; } }
+.qwall .lead { font: 700 15px/1.4 var(--sans); color: var(--ochre-dk); letter-spacing: .02em; }
+
+/* growing slide */
+.split { position: absolute; left: 64px; right: 64px; top: 180px; display: grid; grid-template-columns: 360px 1fr; gap: 52px; }
+.split .darkcard { padding: 28px 30px; min-height: 400px; }
+.split .darkcard .label { color: var(--ochre); margin-bottom: 18px; }
+.split .darkcard p { margin: 0 0 18px; font: 23px/1.42 var(--serif); }
+.steps { display: grid; gap: 24px; align-content: start; padding-top: 6px; }
+.steps > div { display: flex; gap: 18px; align-items: flex-start; }
+.steps h3 { font: 700 20px/1.3 var(--sans); color: var(--navy); }
+.steps p { margin: 4px 0 0; font-size: 17px; line-height: 1.45; color: var(--slate); }
+.evidence { display: flex; gap: 12px; align-items: center; padding: 12px 16px; background: #FBF5EA; border-left: 4px solid var(--ochre); border-radius: 0 4px 4px 0; font-size: 16px; line-height: 1.4; color: var(--ink); }
+
+/* discussion slides */
+.qs2 { position: absolute; left: 64px; right: 64px; top: 220px; display: grid; grid-template-columns: 1fr 1fr; gap: 28px; }
+.qs2 > div { background: var(--navy-2); border-radius: 4px; padding: 30px; min-height: 190px; display: flex; align-items: center; gap: 20px; font: 23px/1.4 var(--sans); }
+.qs { position: absolute; left: 64px; right: 64px; top: 196px; display: grid; gap: 22px; }
+.qs > div { background: var(--navy-2); border-radius: 4px; padding: 0 28px; min-height: 92px; display: flex; align-items: center; gap: 20px; font: 23px/1.38 var(--sans); }
+.after { position: absolute; left: 64px; right: 64px; font-size: 17px; font-style: italic; color: var(--sky); }
+u { text-decoration-thickness: 1px; text-underline-offset: 3px; }
+
+/* 10 three ways */
+.way { position: absolute; border-radius: 4px; padding: 26px 26px; }
+.way .label { margin-bottom: 12px; }
+.way h3 { font: 700 23px/1.25 var(--sans); }
+.way p { margin: 10px 0 0; font-size: 17px; line-height: 1.45; }
+.way.w1 { left: 64px; top: 412px; width: 340px; height: 210px; background: var(--mist); }
+.way.w1 .label { color: var(--slate); } .way.w1 h3 { color: var(--navy); } .way.w1 p { color: var(--slate); }
+.way.w2 { left: 424px; top: 330px; width: 340px; height: 292px; background: var(--navy-2); color: #fff; }
+.way.w2 .label, .way.w3 .label { color: var(--ochre); } .way.w2 p { color: #DCE3EE; }
+.way.w3 { left: 784px; top: 226px; width: 432px; height: 396px; background: var(--navy); color: #fff; }
+.way.w3 p { color: #DCE3EE; }
+.warn { margin-top: 20px; padding-top: 16px; border-top: 1px solid rgba(255,255,255,.2); font-size: 16px; }
+.warn b { color: var(--ochre); }
+
+/* 11 try harder */
+.th-card { position: absolute; left: 64px; top: 210px; width: 330px; height: 300px; padding: 30px; }
+.th-card .big { font: 700 44px/1.1 var(--serif); color: var(--ochre); }
+.th-card p { margin: 18px 0 0; font-size: 18px; line-height: 1.5; font-style: italic; color: #DCE3EE; }
+.th-rows { position: absolute; left: 430px; right: 64px; top: 206px; display: grid; gap: 26px; }
+.th-rows > div { display: flex; gap: 18px; align-items: flex-start; }
+.th-rows h3 { font: 700 20px/1.3 var(--sans); color: var(--navy); }
+.th-rows p { margin: 4px 0 0; font-size: 17px; line-height: 1.45; color: var(--slate); }
+.strip { position: absolute; left: 64px; right: 64px; top: 548px; padding: 16px 22px; display: flex; gap: 16px; align-items: center; font-size: 17px; line-height: 1.4; }
+
+/* 12 trade tool */
+.four { position: absolute; left: 64px; right: 64px; top: 196px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+.four .panel { padding: 26px 24px; min-height: 290px; }
+.four h3 { font: 700 20px/1.3 var(--sans); color: var(--navy); margin-top: 28px; }
+.four p { margin: 10px 0 0; font-size: 17px; line-height: 1.45; color: var(--slate); }
+.four p strong { color: var(--ink); }
+.lesson { position: absolute; left: 64px; right: 64px; top: 520px; padding: 20px 26px; font-size: 19px; }
+.lesson strong { color: var(--ochre); }
+
+/* 13 setup */
+.grid22 { position: absolute; left: 64px; right: 64px; top: 196px; display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+.grid22 .panel { padding: 26px 28px; display: flex; gap: 20px; align-items: flex-start; min-height: 160px; }
+.grid22 h3 { font: 700 21px/1.3 var(--sans); color: var(--navy); }
+.grid22 p { margin: 6px 0 0; font-size: 17px; line-height: 1.45; color: var(--slate); }
+.grid22 p strong { color: var(--ink); }
+
+/* demo slides */
+.demo .sub { position: absolute; left: 64px; top: 168px; font-size: 20px; font-style: italic; color: #DCE3EE; }
+.demo .bigico { position: absolute; left: 64px; top: 300px; width: 150px; height: 150px; border-radius: 50%; background: var(--ochre); display: grid; place-items: center; }
+.demo .bigico svg { width: 72px; height: 72px; fill: none; stroke: #fff; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.demo .wf { position: absolute; left: 280px; right: 64px; top: 244px; }
+.demo .wf .label { color: var(--ochre); margin-bottom: 16px; }
+.demo .wf > div { display: grid; gap: 14px; }
+.demo .row { background: var(--navy-2); border-radius: 4px; display: flex; align-items: center; gap: 18px; padding: 0 22px; min-height: 76px; font-size: 20px; }
+
+/* 15 method (interactive) */
+.chev-row { position: absolute; left: 64px; right: 64px; top: 318px; height: 112px; display: flex; }
+.chev { position: relative; flex: none; height: 100%; padding: 14px 30px 0 36px; background: var(--navy-2); color: #fff; clip-path: polygon(0 0, calc(100% - 24px) 0, 100% 50%, calc(100% - 24px) 100%, 0 100%, 24px 50%); margin-left: -16px; cursor: pointer; border: 0; text-align: left; font: inherit; transition: opacity .25s, filter .25s; }
+.chev:first-child { margin-left: 0; clip-path: polygon(0 0, calc(100% - 24px) 0, 100% 50%, calc(100% - 24px) 100%, 0 100%); padding-left: 20px; }
+.chev b { display: block; font-size: 18px; line-height: 1.2; }
+.chev span { display: block; font-size: 14px; line-height: 1.35; color: #DCE3EE; margin-top: 4px; }
+.chev.gate { background: var(--ochre); color: var(--navy); }
+.chev.gate b { font-size: 17px; }
+.chev.prod { background: var(--navy); }
+.cost { position: absolute; padding: 16px 20px; border-radius: 4px; background: var(--mist); cursor: pointer; border: 0; text-align: left; font: inherit; color: var(--ink); transition: opacity .25s, box-shadow .25s, transform .25s; }
+.cost .num { position: absolute; right: 14px; top: 14px; }
+.cost b { display: block; font-size: 18px; color: var(--navy); padding-right: 40px; }
+.cost em { display: block; font-style: italic; font-size: 15px; color: var(--ochre-dk); margin: 4px 0 6px; font-weight: 700; }
+.cost > span:not(.num) { display: block; font-size: 15px; line-height: 1.4; color: var(--slate); }
+.method.focus .cost:not(.on), .method.focus .chev:not(.on) { opacity: .28; }
+.method .cost.on { box-shadow: 0 0 0 3px var(--ochre); transform: translateY(-2px); background: #fff; }
+.mctl { position: absolute; left: 64px; right: 64px; top: 610px; display: flex; align-items: center; gap: 12px; }
+.spent { margin-left: auto; font-size: 17px; color: var(--ink); }
+.spent b { font: 700 26px/1 var(--serif); color: var(--navy); margin: 0 4px; }
+
+/* 17 rapid analysis */
+.chev-row.r4 { top: 190px; height: 128px; }
+.chev-row.r4 .chev { cursor: default; padding-top: 16px; }
+.chev-row.r4 .chev span { font-size: 15px; }
+.avilia { position: absolute; left: 64px; width: 860px; top: 372px; padding: 26px 30px; display: flex; gap: 22px; }
+.avilia h3 { font: 700 20px/1.3 var(--sans); color: var(--navy); }
+.avilia p { margin: 8px 0 0; font-size: 18px; line-height: 1.5; font-style: italic; color: var(--ink); }
+
+/* 18 lab */
+.labgrid { position: absolute; left: 64px; top: 220px; width: 640px; display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.labgrid .panel { display: flex; align-items: center; gap: 16px; padding: 16px 18px; min-height: 84px; font: 700 18px/1.3 var(--sans); color: var(--navy); }
+.lab-when { position: absolute; left: 740px; right: 64px; top: 196px; padding: 28px 30px; min-height: 330px; }
+.lab-when h3 { font: 700 22px/1.3 var(--sans); color: var(--ochre); margin-bottom: 18px; }
+.lab-when ul { margin: 0; padding-left: 20px; display: grid; gap: 16px; font-size: 18px; line-height: 1.4; }
+
+/* 19 own tools */
+.chev-row.r3 { top: 190px; height: 100px; }
+.chev-row.r3 .chev { cursor: default; padding-top: 18px; }
+.duo { position: absolute; left: 64px; right: 64px; top: 330px; display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+.duo .panel { padding: 26px 28px; display: flex; gap: 20px; min-height: 150px; }
+.duo h3 { font: 700 21px/1.3 var(--sans); color: var(--navy); }
+.duo p { margin: 6px 0 0; font-size: 17px; line-height: 1.45; color: var(--slate); }
+
+/* 20 control gate (interactive) */
+.g-split { position: absolute; left: 64px; right: 64px; top: 186px; display: grid; grid-template-columns: 380px 1fr; gap: 44px; }
+.g-split .darkcard { padding: 28px 30px; height: 340px; }
+.g-split .darkcard .label { color: var(--ochre); margin-bottom: 16px; }
+.g-split .darkcard p { margin: 0; font: 22px/1.45 var(--serif); }
+.gq .label { color: var(--ochre-dk); margin-bottom: 14px; }
+.gq-list { display: grid; gap: 10px; }
+.gq-list button { display: flex; align-items: center; gap: 16px; text-align: left; background: var(--mist); border: 1px solid transparent; border-radius: 4px; padding: 0 18px; min-height: 64px; font: 18px/1.35 var(--sans); color: var(--ink); cursor: pointer; transition: background .2s, border-color .2s; }
+.gq-list button:hover { border-color: var(--rule); }
+.gq-list button[aria-checked="true"] { background: #E6F1EE; border-color: var(--give); }
+.gq-list button[aria-checked="true"] .num { background: var(--give); }
+.gq-list .tick { margin-left: auto; font: 700 13px/1 var(--sans); letter-spacing: .1em; text-transform: uppercase; color: var(--slate); white-space: nowrap; }
+.gq-list button[aria-checked="true"] .tick { color: var(--give); }
+.verdict { position: absolute; left: 64px; right: 64px; top: 556px; display: flex; align-items: center; gap: 18px; padding: 18px 24px; border-radius: 4px; background: #FBF0EB; border-left: 6px solid var(--cost); font-size: 19px; line-height: 1.4; transition: background .25s, border-color .25s; }
+.verdict b { font: 700 24px/1 var(--serif); color: var(--cost); white-space: nowrap; }
+.verdict.go { background: #E6F1EE; border-left-color: var(--give); }
+.verdict.go b { color: var(--give); }
+.verdict .chip-btn { margin-left: auto; }
+
+/* 22 close */
+.close4 { position: absolute; left: 64px; right: 64px; top: 196px; display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+.close4 > div { background: var(--navy-2); color: #fff; border-radius: 4px; padding: 26px 28px; min-height: 150px; display: flex; gap: 18px; }
+.close4 h3 { font: 700 22px/1.3 var(--sans); }
+.close4 p { margin: 6px 0 0; font-size: 17px; line-height: 1.45; color: #DCE3EE; }
+
+/* 23 before AI */
+.relay { position: absolute; left: 64px; right: 64px; top: 188px; display: grid; grid-template-columns: repeat(6, 1fr); gap: 22px; }
+.relay button { position: relative; background: var(--mist); border: 0; border-radius: 4px; padding: 18px 16px 16px; text-align: left; font: inherit; color: var(--ink); cursor: pointer; min-height: 150px; transition: background .2s, color .2s; }
+.relay button:not(:last-child)::after { content: ""; position: absolute; right: -18px; top: 50%; margin-top: -8px; border: 8px solid transparent; border-left: 11px solid var(--slate); border-right: 0; }
+.relay .who-ico { display: flex; gap: 2px; height: 30px; }
+.relay .who-ico svg { width: 26px; height: 30px; fill: var(--navy-2); }
+.relay h3 { font-size: 22px; color: var(--navy); margin-top: 12px; }
+.relay .role { font-size: 14px; color: var(--slate); margin-top: 4px; line-height: 1.3; }
+.relay button[aria-selected="true"] { background: var(--navy); color: #fff; }
+.relay button[aria-selected="true"] h3 { color: #fff; }
+.relay button[aria-selected="true"] .role { color: var(--sky); }
+.relay button[aria-selected="true"] .who-ico svg { fill: var(--ochre); }
+.detail { position: absolute; left: 64px; right: 64px; top: 370px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; border: 1px solid var(--rule); border-radius: 4px; min-height: 140px; }
+.detail > div { padding: 18px 22px; }
+.detail > div + div { border-left: 1px solid var(--rule); }
+.detail .label { color: var(--ochre-dk); margin-bottom: 10px; }
+.detail p { margin: 0; font-size: 18px; line-height: 1.45; color: var(--ink); }
+.traits { position: absolute; left: 64px; right: 64px; top: 540px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+.traits > div { padding: 16px 20px; font-size: 16px; line-height: 1.4; color: #DCE3EE; }
+.traits b { display: block; font: 700 18px/1.3 var(--sans); color: #fff; margin-bottom: 4px; }
+
+/* 24 agents + gates */
+.flow { position: absolute; left: 64px; right: 64px; top: 196px; height: 150px; display: flex; align-items: center; justify-content: space-between; }
+.flow .st { position: relative; width: 156px; height: 140px; background: var(--mist); border: 0; border-radius: 4px; padding: 14px 14px; text-align: left; font: inherit; color: var(--ink); cursor: pointer; transition: background .2s, box-shadow .2s; }
+.flow .st.agent { background: #FBF5EA; }
+.flow .st .who-ico svg { width: 30px; height: 30px; }
+.flow .st.person .who-ico svg { fill: var(--navy-2); }
+.flow .st.agent .who-ico svg { fill: none; stroke: var(--ochre-dk); stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.flow .st h3 { font-size: 20px; color: var(--navy); margin-top: 8px; line-height: 1.15; }
+.flow .st .role { font-size: 13px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; margin-top: 6px; }
+.flow .st.person .role { color: var(--navy-2); }
+.flow .st.agent .role { color: var(--ochre-dk); }
+.flow .st[aria-selected="true"] { box-shadow: 0 0 0 3px var(--navy); }
+.flow .gt { position: relative; width: 64px; height: 140px; border: 0; background: transparent; cursor: pointer; padding: 0; font: inherit; }
+.flow .gt .dia { position: absolute; left: 12px; top: 32px; width: 40px; height: 40px; transform: rotate(45deg); background: var(--navy); border-radius: 4px; transition: background .2s, opacity .3s; }
+.flow .gt .n { position: absolute; left: 0; right: 0; top: 41px; text-align: center; font: 700 17px/22px var(--sans); color: #fff; }
+.flow .gt .gl { position: absolute; left: -14px; right: -14px; top: 88px; text-align: center; font: 700 12px/1.25 var(--sans); color: var(--navy); letter-spacing: .02em; }
+.flow .gt[aria-selected="true"] .dia { background: var(--ochre); box-shadow: 0 0 0 3px #fff, 0 0 0 5px var(--ochre); }
+.flow .gt[aria-selected="true"] .n { color: var(--navy); }
+.flow .gt::before { content: ""; position: absolute; left: -10px; right: -10px; top: 51px; height: 2px; background: var(--rule); z-index: -1; }
+.flow .warnbadge { display: none; position: absolute; right: 10px; top: 10px; width: 24px; height: 24px; border-radius: 50%; background: var(--cost); color: #fff; font: 700 15px/24px var(--sans); text-align: center; }
+.nogates .flow .gt .dia { background: transparent; border: 2px dashed var(--slate); opacity: .5; box-shadow: none; }
+.nogates .flow .gt .n, .nogates .flow .gt .gl { opacity: .35; color: var(--slate); }
+.nogates .flow .st.agent .warnbadge { display: block; }
+.nogates .flow .st.last { background: #FBF0EB; box-shadow: 0 0 0 3px var(--cost); }
+.nogates .flow .st.last h3 { color: var(--cost); }
+.detail2 { position: absolute; left: 64px; right: 64px; top: 364px; min-height: 120px; border: 1px solid var(--rule); border-radius: 4px; padding: 18px 24px; display: grid; grid-template-columns: 250px 1fr; gap: 24px; transition: background .25s, border-color .25s; }
+.detail2 .label { color: var(--ochre-dk); margin-bottom: 8px; }
+.detail2 h3 { font-size: 24px; color: var(--navy); line-height: 1.2; }
+.detail2 .own { font-size: 15px; color: var(--slate); margin-top: 6px; }
+.detail2 p { margin: 0; font-size: 18px; line-height: 1.5; color: var(--ink); }
+.detail2 ul { margin: 0; padding-left: 20px; font-size: 17px; line-height: 1.45; display: grid; gap: 3px; }
+.nogates .detail2 { background: #FBF0EB; border-color: var(--cost-lt); }
+.nogates .detail2 .label, .nogates .detail2 h3 { color: var(--cost); }
+.gctl { position: absolute; left: 64px; right: 64px; top: 502px; display: flex; align-items: center; gap: 14px; }
+.toggle { display: inline-flex; align-items: center; gap: 10px; font: 700 15px/1 var(--sans); color: var(--navy); background: #fff; border: 1px solid var(--rule); border-radius: 999px; padding: 6px 14px 6px 6px; cursor: pointer; }
+.toggle .sw { width: 38px; height: 22px; border-radius: 11px; background: var(--give); position: relative; transition: background .2s; }
+.toggle .sw::after { content: ""; position: absolute; top: 3px; left: 19px; width: 16px; height: 16px; border-radius: 50%; background: #fff; transition: left .2s; }
+.toggle[aria-checked="false"] .sw { background: var(--cost); }
+.toggle[aria-checked="false"] .sw::after { left: 3px; }
+.legend2 { margin-left: auto; display: flex; gap: 18px; font-size: 14px; color: var(--slate); align-items: center; }
+.legend2 span { display: inline-flex; gap: 6px; align-items: center; }
+.legend2 i { width: 14px; height: 14px; border-radius: 3px; display: inline-block; }
+.bottomline { position: absolute; left: 64px; right: 64px; top: 552px; padding: 16px 26px; display: grid; grid-template-columns: 1fr 1fr; gap: 28px; font-size: 17px; line-height: 1.45; }
+.bottomline strong { color: var(--ochre); display: block; font-size: 13px; letter-spacing: .16em; text-transform: uppercase; margin-bottom: 4px; }
+
+/* cover arc (replaces the four zones) */
+.arc { position: absolute; left: 676px; top: 132px; width: 540px; height: 470px; }
+.arc .step { position: absolute; width: 300px; height: 118px; border-radius: 4px; padding: 20px 22px; display: flex; gap: 16px; align-items: flex-start; }
+.arc .step b { display: block; font: 700 21px/1.25 var(--sans); }
+.arc .step span.t { display: block; font-size: 15px; line-height: 1.4; margin-top: 6px; }
+.arc .s1 { left: 0; top: 330px; background: rgba(143,168,209,.14); color: #fff; }
+.arc .s1 span.t { color: var(--sky); }
+.arc .s2 { left: 120px; top: 176px; background: var(--navy-2); color: #fff; }
+.arc .s2 span.t { color: #DCE3EE; }
+.arc .s3 { left: 240px; top: 22px; background: var(--ochre); color: var(--navy); }
+.arc .s3 .num { background: var(--navy); color: #fff; }
+.arc .s3 span.t { color: var(--navy); }
+.arc svg { position: absolute; left: 0; top: 0; }
+
+/* case study B side card */
+.showed { position: absolute; left: 904px; right: 64px; top: 372px; padding: 24px 24px; }
+.showed .label { color: var(--ochre); margin-bottom: 14px; }
+.showed ul { margin: 0; padding: 0; list-style: none; display: grid; gap: 12px; font-size: 17px; line-height: 1.35; }
+.showed li { display: flex; gap: 12px; align-items: flex-start; }
+.showed li .num { width: 24px; height: 24px; font-size: 13px; }
+a.chip-btn { text-decoration: none; display: inline-block; }
+
+/* lab: two-step trigger */
+.lab-when ol { list-style: none; margin: 0; padding: 0; display: grid; gap: 22px; }
+.lab-when ol li { display: flex; gap: 16px; align-items: flex-start; font-size: 20px; line-height: 1.4; }
+.lab-when .after2 { margin-top: 26px; padding-top: 16px; border-top: 1px solid rgba(255,255,255,.2); font-size: 16px; line-height: 1.45; color: var(--sky); }
+
+/* lessons */
+.lsub { position: absolute; left: 64px; top: 140px; font-size: 18px; color: var(--slate); }
+.lgrid { position: absolute; left: 64px; top: 196px; width: 744px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+.lgrid button { position: relative; text-align: left; font: inherit; color: var(--ink); background: var(--mist); border: 0; border-radius: 4px; padding: 16px 16px; height: 150px; cursor: pointer; display: flex; flex-direction: column; transition: opacity .25s, background .2s, color .2s, transform .15s; }
+.lgrid button:hover { transform: translateY(-2px); }
+.lgrid .top { display: flex; align-items: center; gap: 8px; }
+.lgrid .num { width: 26px; height: 26px; font-size: 13px; }
+.lgrid .trk { font: 700 11px/1 var(--sans); letter-spacing: .16em; text-transform: uppercase; }
+.lgrid .ses { margin-left: auto; font: 700 11px/1 var(--sans); letter-spacing: .08em; text-transform: uppercase; color: var(--slate); }
+.lgrid b { display: block; margin-top: 14px; font: 700 18px/1.25 var(--sans); color: var(--navy); }
+.trk.build { color: var(--navy-2); } .trk.auto { color: var(--give); } .trk.well { color: var(--ochre-dk); }
+.lgrid button[aria-selected="true"] { background: var(--navy); color: #fff; }
+.lgrid button[aria-selected="true"] b { color: #fff; }
+.lgrid button[aria-selected="true"] .num { background: var(--ochre); color: var(--navy); }
+.lgrid button[aria-selected="true"] .trk, .lgrid button[aria-selected="true"] .ses { color: var(--sky); }
+.lgrid.filtered button.off { opacity: .25; }
+.ldetail { position: absolute; left: 836px; right: 64px; top: 196px; height: 312px; padding: 26px 28px; }
+.ldetail .label { color: var(--ochre); margin-bottom: 10px; }
+.ldetail h3 { font: 700 26px/1.2 var(--serif); color: #fff; }
+.ldetail .k { margin-top: 18px; font: 700 12px/1 var(--sans); letter-spacing: .16em; text-transform: uppercase; color: var(--sky); }
+.ldetail p { margin: 6px 0 0; font-size: 17px; line-height: 1.45; color: #DCE3EE; }
+.lstrip { position: absolute; left: 64px; right: 64px; top: 556px; padding: 16px 22px; display: flex; gap: 16px; align-items: center; font-size: 17px; line-height: 1.4; }
+.lstrip strong { color: var(--navy); }
+
+/* teach-ins */
+.ti-body { position: absolute; left: 64px; top: 196px; width: 620px; font-size: 20px; line-height: 1.5; color: #DCE3EE; margin: 0; }
+.ti-cards { position: absolute; left: 64px; top: 360px; width: 620px; display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.ti-cards > div { background: var(--navy-2); border-radius: 4px; padding: 22px 22px; min-height: 176px; }
+.ti-cards h3 { font: 700 20px/1.3 var(--sans); color: #fff; margin-top: 14px; }
+.ti-cards p { margin: 6px 0 0; font-size: 16px; line-height: 1.45; color: #DCE3EE; }
+.contact { position: absolute; left: 732px; right: 64px; top: 196px; background: #fff; color: var(--ink); border-radius: 4px; padding: 30px 32px; }
+.contact .label { color: var(--ochre-dk); }
+.contact .who2 { margin-top: 18px; font: 700 26px/1.2 var(--serif); color: var(--navy); }
+.contact .role2 { margin-top: 4px; font-size: 16px; color: var(--slate); }
+.contact .mail { margin-top: 26px; font: 700 23px/1.3 var(--sans); color: var(--navy-2); user-select: all; -webkit-user-select: all; word-break: break-all; }
+.contact .acts { margin-top: 22px; display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+.contact .acts .chip-btn { font-size: 14px; padding: 10px 14px; }
+.contact .acts .primary { background: var(--navy); color: #fff; border-color: var(--navy); }
+.contact .copied { font-size: 14px; color: var(--give); font-weight: 700; }
+.ti-end { position: absolute; left: 64px; right: 64px; top: 586px; font-size: 18px; font-style: italic; color: var(--sky); }
+</style>
+
+<div class="app" id="app">
+  <div class="rotate" id="rotate" role="dialog" aria-labelledby="rotate-title">
+    <div class="phone" aria-hidden="true"></div>
+    <div class="eyebrow">Working with AI · Team Europe</div>
+    <h2 id="rotate-title">Turn your phone sideways</h2>
+    <p>These slides are built for a landscape screen. Rotate your phone to start.</p>
+    <button type="button" id="portraitOk">Continue in portrait</button>
+  </div>
+  <div class="stage" id="stage">
+    <div class="frame" id="frame">
+      <div class="deck" id="deck">
+
+<!-- SVG icon sprites -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="i-person" viewbox="0 0 24 28"><circle cx="12" cy="7" r="5.5"/><path d="M1.5 27c0-6.5 4.7-11 10.5-11s10.5 4.5 10.5 11z"/></symbol>
+    <symbol id="i-agent" viewbox="0 0 24 24"><rect x="4" y="8" width="16" height="12" rx="3"/><path d="M12 4v4M9 13h.01M15 13h.01M9 17h6M2 13v3M22 13v3"/><circle cx="12" cy="3" r="1"/></symbol>
+  </defs>
+</svg>
+
+<!-- 1 · cover -->
+<section class="slide dark s-cover" data-notes="The arc of this deck: how we use AI ourselves, what we can build, and how we decide what&#39;s worth building. It grew out of the AI training session at the Europe retreat on 16 October 2026, and points to a new focus on working with AI effectively to do sophisticated things.">
+  <div class="eyebrow">Team Europe · October 2026</div>
+  <h1 style="top:132px">Working with AI: automate and build</h1>
+  <div class="sub" style="top:420px;width:540px">Key concepts for using AI to do more sophisticated work: how we use it ourselves, what we build, and how we decide what's worth building</div>
+  <div class="who" style="width:560px;line-height:1.45">George Kokkinos · with thanks to Panos, Katherine, Ben (AI &amp; I Lab) and Andreea</div>
+  <div class="arc" aria-hidden="true">
+    <svg width="540" height="470" viewbox="0 0 540 470"><path d="M150 330 L150 294 L270 294 L270 140 L390 140 L390 140" fill="none" stroke="rgba(143,168,209,.45)" stroke-width="2" stroke-dasharray="5 6"/></svg>
+    <div class="step s1"><span class="num ochre">1</span><div><b>How we use AI</b><span class="t">Our people, and three ways to use it</span></div></div>
+    <div class="step s2"><span class="num ochre">2</span><div><b>What we can build</b><span class="t">Case studies, and building with the Lab</span></div></div>
+    <div class="step s3"><span class="num">3</span><div><b>What's worth building</b><span class="t">Agents, people at the gates, and what's next</span></div></div>
+  </div>
+</section>
+
+<!-- 3 · survey headline -->
+<section class="slide" id="sec1" data-notes="13 colleagues answered an anonymous survey (9–14 October 2026), from analysts to a director across Serbia, Moldova and Ukraine. Use is near-universal: 11 of 13 use AI every day or more. But 8 of 13 disagree that AI helps them learn and build skills, and 5 aren&#39;t sure what they&#39;re allowed to use it for.">
+  <div class="eyebrow">1 · AI and our people · Survey results</div>
+  <h2>What our colleagues tell us about AI</h2>
+  <div class="stats3">
+    <div class="panel"><div class="big">11 <small>of 13</small></div><p>use AI tools every day or more. The other two use them several times a week.</p></div>
+    <div class="panel"><div class="big">8 <small>of 13</small></div><p>disagree that AI helps them learn and build skills, not just produce faster.</p></div>
+    <div class="panel"><div class="big">5 <small>of 13</small></div><p>don't feel they know what they're allowed to use AI for at work.</p></div>
+  </div>
+  <div class="quotes2">
+    <div class="qcard"><div class="head"><span class="qmark">“</span><span class="label">The opportunity</span></div><p>“I built the MVP with ChatGPT through multiple feedback cycles and iterations. The tool is interactive and allowed local government to simulate various amalgamation scenarios.”</p></div>
+    <div class="qcard"><div class="head"><span class="qmark">“</span><span class="label">The biggest concern</span></div><p>“A manager could refer to his associates and analysts when asked a question about something they didn't do themselves. An analyst can hardly refer to ChatGPT when asked a question by a client.”</p></div>
+  </div>
+  <div class="src">Anonymous survey of analysts to directors across the region · n = 13 · responses 9–14 October 2026</div>
+  <div class="foot"><span>Team Europe · Working with AI · October 2026</span><span class="pg"></span></div>
+</section>
+
+<!-- 4 · survey: who and how -->
+<section class="slide" data-notes="Everyone uses AI for research; writing and slides follow. Automating is still rare (4 of 13), and almost nobody uses coding assistants yet. Groups by grade are small, so the deck shows everyone together.">
+  <div class="eyebrow">1 · AI and our people · Survey results</div>
+  <h2>We all use AI: to research, write and make slides</h2>
+  <div class="panel whopanel">
+    <div class="big">13</div><div class="bigsub">colleagues answered</div>
+    <div class="label">By grade</div>
+    <div class="mini"><span>Associate</span><i style="width:100%"></i><b>6</b><span>Analyst</span><i style="width:50%"></i><b>3</b><span>(Senior) manager</span><i style="width:50%"></i><b>3</b><span>Director and up</span><i style="width:16.7%"></i><b>1</b></div>
+    <div class="label">By team</div>
+    <div class="mini"><span>Serbia</span><i style="width:100%"></i><b>6</b><span>Moldova</span><i style="width:33.3%"></i><b>2</b><span>Ukraine</span><i style="width:33.3%"></i><b>2</b><span>Didn't say</span><i style="width:50%;background:var(--sky)"></i><b>3</b></div>
+  </div>
+  <div class="chart" style="left:428px;top:232px;width:370px">
+    <div class="label">What we use it for <small id="s4n"></small></div>
+    <div class="hb" id="actChart" style="--lw:150px"></div>
+  </div>
+  <div class="chart" style="left:840px;top:232px;width:376px">
+    <div class="label">How familiar we are</div>
+    <div class="stk" id="famChart"></div>
+    <div class="legend"><span style="--c:#D8DEE7">Never used</span><span style="--c:var(--sky)">Tried it</span><span style="--c:var(--blue)">Comfortable</span><span style="--c:var(--navy-2)">Confident</span></div>
+  </div>
+  <div class="foot"><span>Team Europe · Working with AI · October 2026</span><span class="pg"></span></div>
+</section>
+
+<!-- 5 · survey: statements -->
+<section class="slide" data-notes="Everyone can spot where AI could help, and 11 of 12 feel confident checking AI output. But only 5 of 13 say AI helps them learn and build skills, and none of the three analysts agree. &#39;Confident checking AI output&#39; is self-reported; several written comments describe colleagues not double-checking.">
+  <div class="eyebrow">1 · AI and our people · Survey results</div>
+  <h2>Confident checking AI. Less sure it helps us learn</h2>
+  <div class="dvhead"><span class="a">← Disagree</span><span class="b">Agree →</span></div>
+  <div class="dvrows" id="dvRows"></div>
+  <div class="darkcard insight" id="dvInsight"></div>
+  <div class="foot"><span><span style="color:var(--cost)">■</span> Strongly disagree &nbsp;<span style="color:var(--cost-lt)">■</span> Disagree &nbsp;<span style="color:var(--blue)">■</span> Agree &nbsp;<span style="color:var(--navy-2)">■</span> Strongly agree</span><span class="pg"></span></div>
+</section>
+
+<!-- 6 · survey: barriers and wishes -->
+<section class="slide" data-notes="Time is the biggest barrier (7 of 13), and five don&#39;t see the value yet. Yet 11 want to learn to automate workflows and 8 want to build tools or agents. Four colleagues have already built something (a government dashboard MVP, Apps Script automation, analysis scripts) and four more are very interested. That appetite is what the rest of this deck is about.">
+  <div class="eyebrow">1 · AI and our people · Survey results</div>
+  <h2>Appetite to automate. Time and permissions in the way</h2>
+  <div class="trio">
+    <div class="panel"><div class="big" id="b6y">4</div><p>have already built an automation, agent or small tool with AI</p></div>
+    <div class="panel"><div class="big" id="b6i">4</div><p>haven't yet, but are <strong>very interested</strong></p></div>
+    <div class="panel"><div class="big" id="b6n">5</div><p>haven't built anything with AI</p></div>
+  </div>
+  <div class="chart" style="left:64px;top:330px;width:540px">
+    <div class="label">Biggest barriers <small>more than one answer allowed</small></div>
+    <div class="hb" id="barChart" style="--lw:230px"></div>
+  </div>
+  <div class="chart" style="left:660px;top:330px;width:556px">
+    <div class="label">Where we want to learn more <small>more than one answer allowed</small></div>
+    <div class="hb" id="wantChart" style="--lw:270px"></div>
+  </div>
+  <div class="foot"><span>Team Europe · Working with AI · October 2026</span><span class="pg"></span></div>
+</section>
+
+<!-- 7 · survey: own words -->
+<section class="slide" data-notes="Eight of 13 left a comment on opportunities and risks; some also described what they&#39;ve built. Click each theme to read the quotes, which are lightly trimmed and unattributed. The strongest themes are over-reliance eroding skills, and accountability for accuracy. One colleague asks about which tools are approved; slide 10 covers that.">
+  <div class="eyebrow">1 · AI and our people · Survey results</div>
+  <h2>In their own words</h2>
+  <div class="themes" role="tablist" id="themes"></div>
+  <div class="qwall" id="qwall" role="tabpanel"></div>
+  <div class="abs clickhint" style="left:64px;top:600px;width:312px">Click a theme to see what colleagues wrote.</div>
+  <div class="foot"><span>8 of 13 respondents left a comment · quotes lightly trimmed</span><span class="pg"></span></div>
+</section>
+
+<!-- 8 · growing -->
+<section class="slide" data-notes="The risk is that AI turns colleagues into content producers and erodes the habit of interrogating evidence and judging whether the task is right. The survey backs this: 8 of 13 disagree that AI helps them learn, including all three analysts.
+
+The position: AI should let colleagues work faster with the right guidance, and managers should spend the time saved on their development. One example: run a colleague&#39;s work through ChatGPT, which is approved in the firm, to see how they are developing.">
+  <div class="eyebrow">1 · AI and our people</div>
+  <h2>AI lets us produce more. But are we still growing?</h2>
+  <div class="split">
+    <div class="darkcard">
+      <div class="label">Our position?</div>
+      <p>AI should help colleagues work faster with the right guidance.</p>
+      <p>Managers must spend the time saved on their development, not on more output.</p>
+    </div>
+    <div class="steps">
+      <div><span class="num">1</span><div><h3>The risk</h3><p>Team Europe colleagues pigeonholed into producing client content with AI lose the habit of interrogating evidence and questioning the task.</p></div></div>
+      <div><span class="num">2</span><div><h3>The choice</h3><p>Do we make them “content producers” who drive AI tools, or future leaders who work faster with guidance?</p></div></div>
+      <div><span class="num">3</span><div><h3>The tools</h3><p><em>Leaders can review faster too:</em> for example, running a colleague's work through ChatGPT to see how they are developing.</p></div></div>
+      <div class="evidence"><b style="font:700 26px/1 var(--serif);color:var(--ochre-dk)">8 of 13</b><span>in our survey disagree that AI helps them learn and build skills, including all three analysts.</span></div>
+    </div>
+  </div>
+  <div class="foot"><span>Team Europe · Working with AI · October 2026</span><span class="pg"></span></div>
+</section>
+
+<!-- 10 · three ways -->
+<section class="slide" data-notes="Each way builds on the one before. Individual productivity is already widespread, and Andrea Gorga has developed lots of advice on it. Automating and simplifying work covers regional collaboration, shared tech resources and saving time. Building bespoke products starts from a client need and could become a marketable tool or offer. The rest of this deck covers the second and third.">
+  <div class="eyebrow">2 · Three ways to use AI</div>
+  <h2 class="two">Three ways to use AI. Our focus: automating work and building products</h2>
+  <div class="way w1"><div class="label">Already happening</div><h3>Individual productivity</h3><p>Drafting, summarising and research. Already happening; Andrea Gorga has developed lots of advice on it.</p></div>
+  <div class="way w2"><div class="label">Our focus</div><h3>Automating and simplifying work</h3><p>Regional collaboration, sharing tech resources, <u>automating tasks</u> and saving time in general.</p></div>
+  <div class="way w3"><div class="label">Also our focus</div><h3>Building bespoke products</h3><p>Start from a client need, understand what AI can't do, and create a tool or offer we could sell.</p><div class="warn"><b>HEALTH WARNING!</b> <u>Public tools require extra controls</u></div></div>
+  <svg class="abs" style="left:640px;top:198px" width="150" height="120" viewbox="0 0 150 120" aria-hidden="true"><path d="M20 115 C 20 40, 70 10, 128 30" fill="none" stroke="var(--navy)" stroke-width="12" stroke-linecap="round"/><path d="M118 8 L 146 34 L 112 50 Z" fill="var(--navy)"/></svg>
+  <div class="foot"><span>Team Europe · Working with AI · October 2026</span><span class="pg"></span></div>
+</section>
+
+<!-- 11 · try harder -->
+<section class="slide" data-notes="Try Harder is OffSec&#39;s motto: tech work is hard, and sometimes needlessly complicated, so persistence is the barrier more often than talent. Offensive security training expects you to research, test, fail and retry until you find the way in. The same holds for other tech work, and it is very much in line with consulting practice.
+
+The two Coursera courses build the mental model (capabilities, logic and platforms), not coding skill.">
+  <div class="eyebrow">3 · Trying harder</div>
+  <h2 class="two">Some of the most interesting AI applications are complex; persistence beats talent</h2>
+  <div class="darkcard th-card"><div class="big">“Try Harder”</div><p>OffSec's motto for security learners: when you're stuck, research, retry and work it out for yourself.</p></div>
+  <div class="th-rows">
+    <div><span class="ico"><svg viewbox="0 0 24 24"><path d="M4 21V9l8-5 8 5v12"/><path d="M9 21v-6h6v6M4 21h16"/></svg></span><div><h3>Lessons from cyber security</h3><p>Digital systems are complex; you only get in by testing, failing and digging deeper.</p></div></div>
+    <div><span class="ico"><svg viewbox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M2 12h3M19 12h3M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1"/></svg></span><div><h3>Other tech work</h3><p>Code, data and platforms are <strong>often more complicated</strong> than they need to be. Being cautious about what we build, and perseverance, <strong>are how you understand them</strong>.</p></div></div>
+    <div><span class="ico"><svg viewbox="0 0 24 24"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2M3 13h18"/></svg></span><div><h3>Consulting and advisory</h3><p>The same habit we bring to an unfamiliar client problem: keep digging until it makes sense.</p></div></div>
+  </div>
+  <div class="panel strip"><span class="ico ochre"><svg viewbox="0 0 24 24"><path d="M2 9l10-5 10 5-10 5z"/><path d="M6 11v5c3 2.5 9 2.5 12 0v-5M22 9v6"/></svg></span><span><strong>Build the mental model, not the code:</strong> IBM Full Stack Software Developer · Python for Everybody (University of Michigan) · both on Coursera</span></div>
+  <div class="foot"><span>Team Europe · Working with AI · October 2026</span><span class="pg"></span></div>
+</section>
+
+<!-- 13 · setup -->
+<section class="slide" data-notes="The two case studies that follow were built on a personal device with public, non-confidential data only. ChatGPT is approved in the firm; other AI tools, including Claude Code, are not yet. Setting tools like this up on firm devices needs individual IT permissions, and they cost money.">
+  <div class="eyebrow">4 · What we've built</div>
+  <h2>How these tools were built, and what it costs</h2>
+  <div class="grid22">
+    <div class="panel"><span class="ico"><svg viewbox="0 0 24 24"><rect x="4" y="5" width="16" height="11" rx="1.5"/><path d="M2 19h20"/></svg></span><div><h3>My own device</h3><p>Claude Code runs inside VS Code on my personal laptop, not a firm device.</p></div></div>
+    <div class="panel"><span class="ico ochre"><svg viewbox="0 0 24 24"><path d="M12 3l8 3v6c0 4.5-3.4 8-8 9-4.6-1-8-4.5-8-9V6z"/><path d="M12 8v5M12 16h.01"/></svg></span><div><h3>Approved tools first</h3><p>ChatGPT is approved in the firm; other AI tools are not yet, though a trial may follow. The case studies use <strong>public, non-confidential data only</strong>.</p></div></div>
+    <div class="panel"><span class="ico"><svg viewbox="0 0 24 24"><circle cx="8" cy="15" r="4"/><path d="M11 12l9-9M16 7l3 3M14 9l2 2"/></svg></span><div><h3>IT permissions</h3><p>Setting this up on firm devices <strong>needs individual permissions from the IT team</strong>, which is hard at the moment.</p></div></div>
+    <div class="panel"><span class="ico"><svg viewbox="0 0 24 24"><ellipse cx="12" cy="6" rx="7" ry="3"/><path d="M5 6v6c0 1.7 3.1 3 7 3s7-1.3 7-3V6M5 12v6c0 1.7 3.1 3 7 3s7-1.3 7-3v-6"/></svg></span><div><h3>It costs money</h3><p>Claude Code is a paid tool. I once (accidentally) spent $200 building the trade tool in a single 5-hour session.</p></div></div>
+  </div>
+  <div class="foot"><span>Team Europe · Working with AI · October 2026</span><span class="pg"></span></div>
+</section>
+
+<!-- 15 · method (interactive) -->
+<section class="slide method" id="method" data-notes="Case study A: a media monitoring and sentiment tool built with Claude Code, from a potential client need (understanding media) to a working tool. Click any numbered card, or use Next step, to follow the method; the running cost updates as you go.
+
+1 Thinking time ($0): business need, utility to client or team, feasibility.
+2 Test gate ($0): quick feedback from colleagues and AI chat tools. Could this save analytical time?
+3 Begin prototype build (~$100, a one-off subscription): ingest to VS Code, add a claude.md file, start the build with tests and monitoring.
+4 Tokens = money: this tool cost $23, then about $3 a week. Make a light version, then test.
+5 Next steps ($0): the control gate. Decide whether it stays internal or goes to the AI &amp; I Lab, after discussing its business relevance with Team Europe management.
+
+The title links to the live tool.">
+  <div class="eyebrow">Case study A · Building a bespoke product</div>
+  <h2>Case study A: <a href="https://adartis.github.io/MediaMonitoringToolQuick/" target="_blank" rel="noopener">a media monitoring and sentiment tool</a></h2>
+  <button class="cost" data-k="1" style="left:64px;top:166px;width:300px;height:136px"><span class="num ochre">1</span><b>Thinking time</b><em>Cost: $0</em><span>Consider business need, utility to client or team, feasibility</span></button>
+  <button class="cost" data-k="3" style="left:448px;top:166px;width:330px;height:136px"><span class="num ochre">3</span><b>Begin prototype build</b><em>Cost: ~$100 (Pro AI subscription, once)</em><span>Work in ways to improve analysis, test a build: only code here</span></button>
+  <button class="cost" data-k="5" style="left:866px;top:166px;width:350px;height:136px"><span class="num ochre">5</span><b>Next steps</b><em>Cost: $0</em><span>Internal (free), or to the AI &amp; I Lab after a business-relevance discussion with management</span></button>
+  <div class="chev-row">
+    <button class="chev" data-k="1" style="width:206px"><b>Ideation</b><span>Create a core thesis question; describe the process to the end result</span></button>
+    <button class="chev" data-k="2" style="width:214px"><b>Test the idea</b><span>With colleagues and a chatbot; refine the plan</span></button>
+    <button class="chev" data-k="3" style="width:226px"><b>Ingest to VS Code</b><span>Add a claude.md file and start the build, with tests and monitoring</span></button>
+    <button class="chev" data-k="4" style="width:226px"><b>Refine build</b><span>Observe the build, test with colleagues: heavier token use here</span></button>
+    <button class="chev gate" data-k="5" style="width:120px"><b>Control gate</b></button>
+    <button class="chev prod" data-k="5" style="width:224px"><b>Product</b><span>To be developed with the AI &amp; I Lab</span></button>
+  </div>
+  <button class="cost" data-k="2" style="left:236px;top:446px;width:320px;height:136px"><span class="num ochre">2</span><b>Test gate</b><em>Cost: $0</em><span>Quick feedback: think “could this save analytical time?”</span></button>
+  <button class="cost" data-k="4" style="left:640px;top:446px;width:340px;height:136px"><span class="num ochre">4</span><b>Tokens = money</b><em>Cost: varies ($23 for this tool, then ~$3 a week)</em><span>Product takes shape: make a light version, then test</span></button>
+  <div class="mctl">
+    <button class="chip-btn" id="mNext" type="button">Next step →</button>
+    <button class="chip-btn" id="mAll" type="button">Show all</button>
+    <a class="chip-btn" href="https://adartis.github.io/MediaMonitoringToolQuick/" target="_blank" rel="noopener">Open the live tool ↗</a>
+    <span class="clickhint">Click a card or a stage</span>
+    <span class="spent" id="mSpent">Running cost: <b>$0</b> → <b>~$123</b> plus ~$3 a week</span>
+  </div>
+  <div class="foot"><span>Team Europe · Working with AI · October 2026</span><span class="pg"></span></div>
+</section>
+
+<!-- 17 · rapid analysis -->
+<section class="slide" data-notes="Case study B: an AI agent that automates news gathering and analysis, built with an associate in under two hours. An hour of ideation together, ten minutes of instructions, an hour of build, then review until staff are happy.
+
+The point: someone new to this picked it up quickly. The agent gathered well but missed nuance, which is where people come in. Avilia&#39;s reaction: the structure (charts, case cards) helps organise evidence and find relevant case studies.
+
+The title links to the live example (energy lessons, Serbia).">
+  <div class="eyebrow">Case study B · Automating work</div>
+  <h2>Case study B: <a href="https://adartis.github.io/EnergyLessonsSerbia/" target="_blank" rel="noopener">a rapid analysis in under two hours</a></h2>
+  <div class="chev-row r4">
+    <div class="chev" style="width:300px"><b>Ideation (1h)</b><span>Work together to identify a business opportunity: explain the question, process, output and success criteria</span></div>
+    <div class="chev" style="width:300px"><b>Instructions (10 min)</b><span>Present the idea to the AI to build a decisions file, then an instructions file for the build</span></div>
+    <div class="chev" style="width:300px"><b>Build (60 min)</b><span>The AI agent builds the data, tool or analysis per the instructions. Returns an alpha model</span></div>
+    <div class="chev prod" style="width:300px"><b>Product</b><span>Review, assess, amend: the lifecycle finishes when staff are happy</span></div>
+  </div>
+  <div class="panel avilia" style="width:816px"><span class="ico"><svg viewbox="0 0 24 24"><circle cx="9" cy="8" r="3.2"/><path d="M3.5 19c.6-3.2 2.8-5 5.5-5s4.9 1.8 5.5 5"/><circle cx="16.5" cy="9" r="2.6"/><path d="M15.5 14.2c2.6-.3 4.6 1.4 5 4.3"/></svg></span><div><h3>Avilia's experience</h3><p>“It's exciting to see how quickly and easily a prototype like this could be built, and the potential it has. The structured layout of evidence through charts and case cards in particular can greatly facilitate our work in organising evidence, finding relevant case studies and presenting recommendations to the client.”</p></div></div>
+  <div class="darkcard showed"><div class="label">What it showed</div><ul>
+    <li><span class="num ochre">1</span><span>A task set in plain language</span></li>
+    <li><span class="num ochre">2</span><span>It gathered well, but missed nuance</span></li>
+    <li><span class="num ochre">3</span><span>A newcomer picked it up quickly</span></li>
+  </ul></div>
+  <div class="foot"><span>Team Europe · Working with AI · October 2026</span><span class="pg"></span></div>
+</section>
+
+<!-- 18 · lab -->
+<section class="slide" data-notes="Prototype it yourself, then take it to market with the AI &amp; I Lab. The Lab advises on best practice and can help develop our own prototypes for going to market, which matters for security, the data platform, hosting, branding and clearance.
+
+When to bring the Lab in: first discuss the idea&#39;s business relevance with Team Europe management, then engage Ben and his team.">
+  <div class="eyebrow">5 · Building with the Lab</div>
+  <h2>Prototype it yourself; take it to market with the Lab</h2>
+  <div class="label abs" style="left:64px;top:190px;color:var(--ochre-dk)">What the Lab brings</div>
+  <div class="labgrid">
+    <div class="panel"><span class="ico"><svg viewbox="0 0 24 24"><path d="M9 17h6M10 20.5h4"/><path d="M12 3.5a6 6 0 0 0-3.6 10.8c.6.5 1 1.2 1 2V17h5.2v-.7c0-.8.4-1.5 1-2A6 6 0 0 0 12 3.5z"/></svg></span>Best-practice advice</div>
+    <div class="panel"><span class="ico"><svg viewbox="0 0 24 24"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18l3 3 6.3-6.3a4 4 0 0 0 5.4-5.4l-2.5 2.5-2.4-.6-.6-2.4z"/></svg></span>Prototypes built for market</div>
+    <div class="panel"><span class="ico"><svg viewbox="0 0 24 24"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg></span>Security</div>
+    <div class="panel"><span class="ico"><svg viewbox="0 0 24 24"><ellipse cx="12" cy="6" rx="7" ry="3"/><path d="M5 6v12c0 1.7 3.1 3 7 3s7-1.3 7-3V6M5 12c0 1.7 3.1 3 7 3s7-1.3 7-3"/></svg></span>Data platform</div>
+    <div class="panel"><span class="ico"><svg viewbox="0 0 24 24"><path d="M7 18a5 5 0 1 1 1-9.9A6 6 0 0 1 19.5 10 4 4 0 0 1 18 18z"/></svg></span>Hosting</div>
+    <div class="panel"><span class="ico"><svg viewbox="0 0 24 24"><path d="M3 12V4h8l10 10-8 8z"/><circle cx="7.5" cy="8.5" r="1.3"/></svg></span>Branding and clearance</div>
+  </div>
+  <div class="darkcard lab-when"><h3>When to bring the Lab in</h3><ol>
+    <li><span class="num ochre">1</span><span>Discuss the idea's business relevance with <strong>Team Europe management</strong></span></li>
+    <li><span class="num ochre">2</span><span>Then engage <strong>Ben and the AI &amp; I Lab team</strong></span></li>
+  </ol><div class="after2">The Lab then advises on what it takes to make the prototype secure, hosted and client-ready.</div></div>
+  <div class="foot"><span>Team Europe · Working with AI · October 2026</span><span class="pg"></span></div>
+</section>
+
+<!-- 12 · trade tool -->
+<section class="slide" data-notes="The trade tool is the Lab&#39;s worked example. Five incoming EU packages threatened Serbia&#39;s trade position, and TBI Serbia&#39;s advice was a large, static, one-off analysis. It started as a Claude Code prototype; the AI &amp; I Lab then partnered with TBI Serbia to turn it into working software with an open tier (EU roundup, plain-language summaries, trade data, &#39;contact us&#39;) and a paid client tier. It was shown to Europe leadership on 14 September with a positive steer, and is being adapted for Romania, with testing agreed with Serbian counterparts.">
+  <div class="eyebrow">5 · Building with the Lab</div>
+  <h2>The EU Trade Tool: from Claude Code to the Lab</h2>
+  <div class="four">
+    <div class="panel"><span class="num">1</span><h3>A client problem</h3><p>Five incoming EU packages threatened Serbia's trade position. <strong>Our advice was a static, one-off analysis.</strong></p></div>
+    <div class="panel"><span class="num">2</span><h3>A prototype</h3><p>Built in Claude Code by advisory, <strong>to turn one-off advice into something reusable.</strong></p></div>
+    <div class="panel"><span class="num ochre">3</span><h3>Handed to the Lab</h3><p><strong>The AI &amp; I Lab turned it into two-tier software: open for reach, paid for clients.</strong></p></div>
+    <div class="panel"><span class="num">4</span><h3>What's next</h3><p>Shown to Europe leadership on 14 Sept. <strong><em>Romania adaptation and Serbian testing next.</em></strong></p></div>
+  </div>
+  <div class="darkcard lesson"><strong>The lesson:</strong> advisory knew the client problem; the Lab built it, made it secure, hosted and client-ready.</div>
+  <div class="foot"><span>Team Europe · Working with AI · October 2026</span><span class="pg"></span></div>
+</section>
+
+<!-- 19 · own tools -->
+<section class="slide" data-notes="The region can build its own AI products and offer them to governments and corporates. Advisory makes this possible, because it holds the client relationships and the local knowledge; the AI &amp; I Lab takes instructions and advice from advisory to build the tools. That is a marked change from how things used to be done.
+
+ChatGPT is approved in the firm; other AI tools are not yet. CentreAI, our in-house policy development platform, is almost ready to deploy to governments.">
+  <div class="eyebrow">5 · Building with the Lab</div>
+  <h2 class="two">Our own tools can now build products for governments and corporates</h2>
+  <div class="chev-row r3">
+    <div class="chev" style="width:392px"><b>Produce work</b><span>ChatGPT and similar tools, for everyday work</span></div>
+    <div class="chev" style="width:392px"><b>Prototype</b><span>Claude Code, or AI assistants inside VS Code</span></div>
+    <div class="chev prod" style="width:400px"><b>Product</b><span>Developed with the AI &amp; I Lab</span></div>
+  </div>
+  <div class="duo">
+    <div class="panel"><span class="ico"><svg viewbox="0 0 24 24"><circle cx="9" cy="8" r="3.2"/><path d="M3.5 19c.6-3.2 2.8-5 5.5-5s4.9 1.8 5.5 5"/><circle cx="16.5" cy="9" r="2.6"/><path d="M15.5 14.2c2.6-.3 4.6 1.4 5 4.3"/></svg></span><div><h3>Advisory brings</h3><p>Grassroots knowledge of client counterparts across Europe, and the relationships with them</p></div></div>
+    <div class="panel"><span class="ico"><svg viewbox="0 0 24 24"><path d="M8 7l-5 5 5 5M16 7l5 5-5 5M14 4l-4 16"/></svg></span><div><h3>The AI &amp; I Lab brings</h3><p>The build: it turns advisory's instructions and advice into working software</p></div></div>
+  </div>
+  <div class="abs muted" style="left:64px;top:520px;font-size:17px;font-style:italic">Also nearly ready to deploy to governments: CentreAI</div>
+  <div class="foot"><span>Team Europe · Working with AI · October 2026</span><span class="pg"></span></div>
+</section>
+
+<!-- 21 · discussion -->
+<section class="slide dark" data-notes="Powerful tools waste resources if aimed badly, just as speculative work does when it isn&#39;t grounded in a real client problem or within our skills and value proposition. We already have a lot of the tools; these three questions help decide what is worth building.">
+  <div class="eyebrow">5 · Building with the Lab</div>
+  <h2>Before you build: three questions</h2>
+  <div class="after" style="top:140px;font-size:19px">Bringing an entrepreneurial spirit to the products we design in the region</div>
+  <div class="qs">
+    <div><span class="num ochre">1</span><span>We already have many tools. Are <u>we</u> using them right?</span></div>
+    <div><span class="num ochre">2</span><span>Is there a <strong>named client problem</strong>, within our skills and value proposition, with the Lab consulted and a time box?</span></div>
+    <div><span class="num ochre">3</span><span><u>What would it take for you to back a colleague's product idea</u>?</span></div>
+  </div>
+  <div class="foot"><span>Team Europe · Working with AI · October 2026</span><span class="pg"></span></div>
+</section>
+
+<!-- 23 · before AI (interactive) -->
+<section class="slide" data-notes="How research projects used to work: a relay. Each stage is done by a person, and each hands on to the next. Click through the stages to see who did what and where the judgement sat.
+
+Veracity came from the people: whoever gathered and analysed the evidence knew every detail, so they could answer for it. Review mostly happened at the end, by seniority. It was slow, but each link in the chain was a person who could explain their work.">
+  <div class="eyebrow">6 · Working with agents · 1 of 2</div>
+  <h2>Before AI: research as a relay of people</h2>
+  <div class="relay" role="tablist" id="relay"></div>
+  <div class="detail" id="relayDetail" role="tabpanel"></div>
+  <div class="traits">
+    <div class="darkcard"><b>Sequential</b>Each stage waits for the one before. Weeks, not hours.</div>
+    <div class="darkcard"><b>Insight built by hand</b>Whoever did the work knows every detail and can answer for it.</div>
+    <div class="darkcard"><b>Review at the end</b>Quality is checked mostly once, by seniority, near delivery.</div>
+  </div>
+  <div class="foot"><span>Click a stage to see who did the work and where the judgement sat</span><span class="pg"></span></div>
+</section>
+
+<!-- 24 · agents + gates (interactive) -->
+<section class="slide" id="agents" data-notes="Treat AI as an analyst: agents gather, analyse and draft in hours, not weeks. But we plan people into the work as control gates between the agent&#39;s stages, so veracity still comes from a person who can answer for it.
+
+Click each gate to see who owns it and what they check. Then flip the switch to remove the gates: every agent stage becomes unchecked, and the question at delivery is who answers the client.
+
+The survey link: 11 of 12 say they&#39;re confident checking AI output, yet several comments describe people not double-checking. Make checking a planned step, with an owner and time in the work plan.">
+  <div class="eyebrow">6 · Working with agents · 2 of 2</div>
+  <h2>With agents: AI as the analyst, people at the gates</h2>
+  <div class="flow" id="flow"></div>
+  <div class="detail2" id="flowDetail" aria-live="polite"></div>
+  <div class="gctl">
+    <button type="button" class="toggle" id="gateToggle" role="switch" aria-checked="true"><span class="sw"></span><span id="gateToggleLab">Control gates on</span></button>
+    <span class="clickhint">Click a gate or a stage</span>
+    <span class="legend2"><span><i style="background:var(--mist);box-shadow:0 0 0 1px var(--rule) inset"></i>Person</span><span><i style="background:#FBF5EA;box-shadow:0 0 0 1px var(--ochre) inset"></i>Agent</span><span><i style="background:var(--navy);transform:rotate(45deg);width:11px;height:11px"></i>Human control gate</span></span>
+  </div>
+  <div class="darkcard bottomline">
+    <div><strong>What changes</strong>Speed and volume. Agents do in hours what took analysts weeks, so the bottleneck moves to review.</div>
+    <div><strong>What doesn't</strong>Accountability. Plan each gate into the work: an owner, a time slot and a clear definition of “checked”.</div>
+  </div>
+  <div class="foot"><span>Team Europe · Working with AI · October 2026</span><span class="pg"></span></div>
+</section>
+
+<!-- 25 · lessons (interactive) -->
+<section class="slide" id="lessons" data-notes="A series of bite-sized lessons, one hour each, run fortnightly and open to all. Each covers one skill you can use the next day, with public data only. Filter by track, or click a lesson to see what you&#39;ll be able to do and why it&#39;s on the list. The suggested order runs from top left to bottom right. A short guide to what&#39;s allowed and handling data safely will be shared separately as a document, so everyone knows the rules before they build.">
+  <div class="eyebrow">7 · What's next</div>
+  <h2>Learn it in bite-sized lessons</h2>
+  <div class="lsub">One-hour sessions, one skill at a time, using public data only</div>
+  <div class="filter" style="top:140px" id="lFilter"><span class="lab">Show</span></div>
+  <div class="lgrid" id="lGrid" role="tablist" aria-label="Lessons"></div>
+  <div class="darkcard ldetail" id="lDetail" role="tabpanel" aria-live="polite"></div>
+  <div class="panel lstrip"><span class="ico ochre"><svg viewbox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg></span><span><strong>Suggested order:</strong> top left to bottom right, one lesson a fortnight. A short guide to <strong>what's allowed and handling data safely</strong> will be shared separately as a document.</span></div>
+  <div class="foot"><span>Team Europe · Working with AI · October 2026</span><span class="pg"></span></div>
+</section>
+
+<!-- 26 · teach-ins and contact -->
+<section class="slide dark" id="teachins" data-notes="George will run fortnightly one-hour teach-ins and workshops on AI use, open to everyone in Team Europe. The first session date will follow in due course. For specific advice, or an idea you&#39;d like to prototype, email g.kokkinos@institute.global.">
+  <div class="eyebrow">7 · What's next</div>
+  <h2>Fortnightly teach-ins and workshops, open to all</h2>
+  <p class="ti-body">George will run a one-hour teach-in or hands-on workshop every two weeks, working through the lessons on the previous slide. Everyone in Team Europe is welcome, whatever your starting point. The first date will follow in due course.</p>
+  <div class="ti-cards">
+    <div><span class="ico ochre"><svg viewbox="0 0 24 24"><circle cx="9" cy="8" r="3.2"/><path d="M3.5 19c.6-3.2 2.8-5 5.5-5s4.9 1.8 5.5 5"/><circle cx="16.5" cy="9" r="2.6"/><path d="M15.5 14.2c2.6-.3 4.6 1.4 5 4.3"/></svg></span><h3>Come along</h3><p>Teach-ins and workshops on using AI well, from building pages to automating work.</p></div>
+    <div><span class="ico ochre"><svg viewbox="0 0 24 24"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/><path d="M9 11h.01M12 11h.01M15 11h.01"/></svg></span><h3>Ask for advice</h3><p>Stuck on something specific, or have an idea to test? Get in touch for one-to-one advice.</p></div>
+  </div>
+  <div class="contact">
+    <div class="label">Get in touch</div>
+    <div class="who2">George Kokkinos</div>
+    <div class="role2">Teach-ins, workshops and one-to-one advice on AI</div>
+    <div class="mail" id="mailAddr">g.kokkinos@institute.global</div>
+    <div class="acts">
+      <a class="chip-btn primary" href="mailto:g.kokkinos@institute.global?subject=AI%20teach-ins%3A%20question" target="_blank" rel="noopener">Email George</a>
+      <button type="button" class="chip-btn" id="copyMail">Copy email</button>
+      <span class="copied" id="copyNote" aria-live="polite"></span>
+    </div>
+  </div>
+  <div class="ti-end">And keep trying harder: the tools are learnable.</div>
+  <div class="foot"><span>Team Europe · Working with AI · October 2026</span><span class="pg"></span></div>
+</section>
+
+      </div>
+    </div>
+    <div class="notes" id="notes" hidden=""><b>Speaker notes</b><span id="notes-text"></span></div>
+  </div>
+  <div class="controls" id="controls">
+    <button type="button" id="prev" aria-label="Previous slide">←</button>
+    <span class="count" id="count">1 / 24</span>
+    <button type="button" id="next" aria-label="Next slide">→</button>
+    <span class="spacer"></span>
+    <button type="button" id="notesBtn" aria-pressed="false">Notes</button>
+    <button type="button" id="fsBtn" hidden="">Full screen</button>
+    <span class="iostip">For more room: tap aA in the address bar, then Hide Toolbar.</span>
+    <span class="hint">Arrow keys to move · N notes · F full screen</span>
+  </div>
+</div>
+
+<script>
+(function () {
+  var W = 1280, H = 720;
+  var app = document.getElementById('app'), stage = document.getElementById('stage'), frame = document.getElementById('frame'), deck = document.getElementById('deck');
+  var slides = Array.prototype.slice.call(deck.querySelectorAll('.slide'));
+  var countEl = document.getElementById('count'), notes = document.getElementById('notes'), notesText = document.getElementById('notes-text');
+  var cur = 0;
+  slides.forEach(function (s, i) { var pg = s.querySelector('.pg'); if (pg) pg.textContent = i + 1; });
+
+  function fit() {
+    var cs = getComputedStyle(stage);
+    var aw = stage.clientWidth - parseFloat(cs.paddingLeft) - parseFloat(cs.paddingRight);
+    var ah = stage.clientHeight - parseFloat(cs.paddingTop) - parseFloat(cs.paddingBottom);
+    var s = Math.max(0.1, Math.min(aw / W, ah / H));
+    frame.style.width = (W * s) + 'px'; frame.style.height = (H * s) + 'px';
+    deck.style.transform = 'scale(' + s + ')';
+  }
+  window.addEventListener('resize', fit);
+  if (window.ResizeObserver) new ResizeObserver(fit).observe(stage);
+
+  function go(i) {
+    i = Math.max(0, Math.min(slides.length - 1, i));
+    slides[cur].classList.remove('active');
+    cur = i;
+    slides[cur].classList.add('active');
+    countEl.textContent = (cur + 1) + ' / ' + slides.length;
+    notesText.textContent = slides[cur].getAttribute('data-notes') || '';
+    try { history.replaceState(null, '', '#' + (cur + 1)); } catch (e) {}
+  }
+  document.getElementById('prev').onclick = function () { go(cur - 1); };
+  document.getElementById('next').onclick = function () { go(cur + 1); };
+  Array.prototype.forEach.call(document.querySelectorAll('[data-jump]'), function (b) {
+    b.addEventListener('click', function () { var t = document.getElementById(b.getAttribute('data-jump')); if (t) go(slides.indexOf(t)); });
+  });
+
+  function toggleNotes() { notes.hidden = !notes.hidden; document.getElementById('notesBtn').setAttribute('aria-pressed', String(!notes.hidden)); }
+  document.getElementById('notesBtn').onclick = toggleNotes;
+
+  var fsBtn = document.getElementById('fsBtn');
+  var fsOK = !!(document.fullscreenEnabled || document.webkitFullscreenEnabled);
+  fsBtn.hidden = !fsOK;
+  var isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+  if (!fsOK && isIOS) app.classList.add('ios');
+  function fsEl() { return document.fullscreenElement || document.webkitFullscreenElement; }
+  function toggleFs() {
+    if (!fsOK) return;
+    try {
+      if (fsEl()) { (document.exitFullscreen || document.webkitExitFullscreen).call(document); return; }
+      var req = app.requestFullscreen || app.webkitRequestFullscreen;
+      var p = req.call(app);
+      var lock = function () { try { if (screen.orientation && screen.orientation.lock) screen.orientation.lock('landscape').catch(function () {}); } catch (e) {} };
+      if (p && p.then) p.then(lock).catch(function () {}); else lock();
+    } catch (e) {}
+  }
+  fsBtn.onclick = toggleFs;
+  function onFs() { var on = !!fsEl(); app.classList.toggle('fs', on); fsBtn.textContent = on ? 'Exit full screen' : 'Full screen'; setTimeout(fit, 50); }
+  document.addEventListener('fullscreenchange', onFs);
+  document.addEventListener('webkitfullscreenchange', onFs);
+  var hideTimer;
+  document.addEventListener('mousemove', function () {
+    if (!app.classList.contains('fs')) return;
+    app.classList.add('show-ui'); clearTimeout(hideTimer);
+    hideTimer = setTimeout(function () { app.classList.remove('show-ui'); }, 2000);
+  });
+  document.getElementById('portraitOk').onclick = function () { app.classList.add('portrait-ok'); fit(); };
+  if (window.matchMedia) {
+    var land = window.matchMedia('(orientation: landscape)');
+    var onTurn = function () { if (land.matches) app.classList.remove('portrait-ok'); setTimeout(fit, 120); };
+    if (land.addEventListener) land.addEventListener('change', onTurn); else if (land.addListener) land.addListener(onTurn);
+  }
+
+  document.addEventListener('keydown', function (e) {
+    if (e.altKey || e.ctrlKey || e.metaKey) return;
+    var t = e.target;
+    if (t && t.getAttribute && t.getAttribute('role') === 'slider') return;
+    var k = e.key, onBtn = t && t.tagName === 'BUTTON';
+    if (k === 'ArrowRight' || k === 'PageDown' || k === 'ArrowDown' || (k === ' ' && !onBtn)) { e.preventDefault(); go(cur + 1); }
+    else if (k === 'ArrowLeft' || k === 'PageUp' || k === 'ArrowUp' || k === 'Backspace') { e.preventDefault(); go(cur - 1); }
+    else if (k === 'Home') { e.preventDefault(); go(0); }
+    else if (k === 'End') { e.preventDefault(); go(slides.length - 1); }
+    else if (k === 'n' || k === 'N') toggleNotes();
+    else if (k === 'f' || k === 'F') toggleFs();
+  });
+  var sx = null, sy = null;
+  stage.addEventListener('touchstart', function (e) { if (e.target.closest('.bar')) { sx = null; return; } sx = e.touches[0].clientX; sy = e.touches[0].clientY; }, { passive: true });
+  stage.addEventListener('touchend', function (e) {
+    if (sx === null) return;
+    var dx = e.changedTouches[0].clientX - sx, dy = e.changedTouches[0].clientY - sy;
+    if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy)) go(cur + (dx < 0 ? 1 : -1));
+    sx = null;
+  }, { passive: true });
+
+  function el(tag, cls, html) { var e = document.createElement(tag); if (cls) e.className = cls; if (html != null) e.innerHTML = html; return e; }
+
+  /* ---------- survey totals (everyone, n = 13; aggregates only) ---------- */
+  var N = 13;
+  var ACT = [['Research', 13], ['Writing/drafting', 10], ['Building slides', 10], ['Identifying options', 8], ['Reviewing work', 7], ['Data analysis', 7], ['Automating activities', 4]];
+  var FAM = [['ChatGPT', [11, 2, 0, 0]], ['Claude', [9, 0, 3, 1]], ['Gemini', [1, 2, 3, 7]], ['Perplexity', [1, 1, 2, 9]], ['Coding assistants', [0, 3, 1, 9]]]; // confident, comfortable, tried, never
+  var ST = [ // strongly disagree, disagree, agree, strongly agree, answered
+    ['AI helps me learn and build skills, not just produce faster', [1, 7, 4, 1, 13]],
+    ['I’m confident checking AI output for accuracy', [0, 1, 7, 4, 12]],
+    ['I know what I’m allowed to use AI for at work', [2, 3, 5, 3, 13]],
+    ['I can spot opportunities where AI could help', [0, 0, 9, 4, 13]]];
+  var BARS = [['No time', 7], ['Don’t see the value yet', 5], ['Tool access or IT permissions', 3], ['Unsure what’s allowed', 3], ['Don’t know where to start', 2], ['Client confidentiality concerns', 2]];
+  var WANTS = [['Automating workflows', 11], ['Building tools or agents', 8], ['Everyday prompting and productivity', 6], ['Getting more out of in-house AI tools', 6], ['Coding basics (e.g. Python)', 6], ['AI risks, security and data handling', 6], ['Spotting AI opportunities for clients', 6], ['Data analysis with AI', 5]];
+  function bars(container, list, n, ochreTop) {
+    container.innerHTML = '';
+    list.forEach(function (p, i) {
+      container.appendChild(el('span', '', p[0]));
+      var t = el('span', 't'), bar = el('i', ochreTop && i < ochreTop ? 'o' : '');
+      bar.style.width = (p[1] / n * 100) + '%'; t.appendChild(bar); container.appendChild(t);
+      container.appendChild(el('span', 'v', p[1]));
+    });
+  }
+  (function () {
+    document.getElementById('s4n').textContent = 'n = ' + N;
+    bars(document.getElementById('actChart'), ACT, N);
+    var fam = document.getElementById('famChart');
+    FAM.forEach(function (f) {
+      fam.appendChild(el('span', '', f[0]));
+      var t = el('span', 't');
+      [3, 2, 1, 0].forEach(function (lv, k) {
+        var c = f[1][k];
+        var seg = el('i', 'lv' + lv, c && c / N >= 0.12 ? c : ''); seg.style.width = (c / N * 100) + '%';
+        seg.title = c + ' ' + ['never used', 'tried it', 'comfortable', 'confident'][lv];
+        t.appendChild(seg);
+      });
+      fam.appendChild(t);
+    });
+    var dv = document.getElementById('dvRows');
+    ST.forEach(function (s) {
+      var v = s[1], m = v[4];
+      var row = el('div', 'dvrow'); row.appendChild(el('div', 'q', s[0]));
+      var d = el('div', 'dv'), L = el('div', 'l'), R = el('div', 'r');
+      [['di', v[1]], ['sd', v[0]]].forEach(function (p) { var i = el('i', p[0], p[1] || ''); i.style.width = (p[1] / m * 100) + '%'; L.appendChild(i); });
+      [['ag', v[2]], ['sa', v[3]]].forEach(function (p) { var i = el('i', p[0], p[1] || ''); i.style.width = (p[1] / m * 100) + '%'; R.appendChild(i); });
+      L.style.width = '50%'; R.style.width = '50%';
+      d.appendChild(L); d.appendChild(R); row.appendChild(d);
+      row.appendChild(el('div', 'rd', '<b>' + (v[2] + v[3]) + ' of ' + m + '</b>agree'));
+      dv.appendChild(row);
+    });
+    document.getElementById('dvInsight').innerHTML = '<strong>11 of 12</strong> feel confident checking AI output, but only <strong>5 of 13</strong> say AI helps them learn and build skills. None of the three analysts agree.';
+    bars(document.getElementById('barChart'), BARS, N, 1);
+    bars(document.getElementById('wantChart'), WANTS, N, 2);
+  })();
+
+  /* ---------- slide 7: own words ---------- */
+  var THEMES = [
+    ['Skills and over-reliance', [
+      '“Over-dependence, lack of knowledge retention and skill building, producing AI slop for clients.”',
+      '“Over-reliance on AI … Not really learning due to over-reliance on AI.”',
+      '“Project review being limited to ‘ask ChatGPT for this’, ‘Review this with GPT first’, ‘I don’t know, ask GPT’. The problem I see in this is laziness in engaging with the problem and with colleagues’ development.”']],
+    ['Accountability for accuracy', [
+      '“The output is also assumed to be correct and there is little sense of accountability for when it is not. Until AI is 100% accurate, we need to recognise the reality that it makes mistakes, which we are then accountable for.”',
+      '“My biggest concern is that we may lose confidence in the output we are producing … we’re not aware of every little detail that was done or researched.”',
+      '“Individuals not confirming or double-checking AI-produced research.”']],
+    ['Quality of our work', [
+      '“Producing AI slop, standard of work has noticeably decreased, people don’t know how to use it correctly.”',
+      '“It can be frustrating to read through feedback that is largely and plainly AI … the AI often lacks context, and combined with its hollow way of writing this can lead to not very useful feedback on decks.”',
+      '“We feel the goal has already been partially met because we are being told internally to use AI, vs thinking critically about whether we got something helpful for the client: AI for AI’s sake.”']],
+    ['Pressure and clarity', [
+      '“Feeling forced to use AI: it feels like deadlines are being set with an assumption that everyone will use AI.”',
+      '“Not clear communication about what’s allowed and what not. I keep on hearing from senior leadership about Claude, yet last I checked only ChatGPT and CentreAI were allowed.”']],
+    ['What we’ve built, and the opportunity', [
+      '<span class="lead">A government dashboard</span><br>“I built the MVP with ChatGPT through multiple feedback cycles and iterations … it allowed local government to simulate various amalgamation scenarios and the financial incentives for each.”',
+      '<span class="lead">Automation and analysis</span><br>“I automated creation of a series of forms to send out to stakeholders using code on Apps Script, created with Claude.” · “Claude helps speed up the process with R, with very good results.”',
+      '<span class="lead">Where clients need it</span><br>“Clients have access to good high-level expertise. The gap is lower down in the system, e.g. lack of accurate and accessible data and systems that could leverage AI.”']]
+  ];
+  var themesEl = document.getElementById('themes'), qwall = document.getElementById('qwall');
+  function showTheme(i) {
+    Array.prototype.forEach.call(themesEl.children, function (b, j) { b.setAttribute('aria-selected', String(i === j)); b.tabIndex = i === j ? 0 : -1; });
+    qwall.innerHTML = '';
+    THEMES[i][1].forEach(function (q) { qwall.appendChild(el('div', 'q', q)); });
+  }
+  THEMES.forEach(function (t, i) {
+    var b = el('button', '', '<span>' + t[0] + '</span><span>' + t[1].length + ' quotes</span>');
+    b.type = 'button'; b.setAttribute('role', 'tab'); b.onclick = function () { showTheme(i); };
+    themesEl.appendChild(b);
+  });
+  showTheme(0);
+
+  /* ---------- slide 15: method walk-through ---------- */
+  (function () {
+    var s = document.getElementById('method'), step = 0;
+    var spent = document.getElementById('mSpent');
+    var SPENT = [
+      'Running cost: <b>$0</b> → <b>~$123</b> plus ~$3 a week',
+      'Spent so far: <b>$0</b> thinking is free',
+      'Spent so far: <b>$0</b> feedback is free',
+      'Spent so far: <b>~$100</b> one-off subscription',
+      'Spent so far: <b>~$123</b> then ~$3 a week to run',
+      'Total: <b>~$123</b> + ~$3 a week · internal, or to the Lab?'
+    ];
+    function set(k) {
+      step = k;
+      s.classList.toggle('focus', k > 0);
+      Array.prototype.forEach.call(s.querySelectorAll('[data-k]'), function (e) { e.classList.toggle('on', +e.getAttribute('data-k') === k); });
+      spent.innerHTML = SPENT[k];
+    }
+    Array.prototype.forEach.call(s.querySelectorAll('[data-k]'), function (e) { e.addEventListener('click', function () { var k = +e.getAttribute('data-k'); set(step === k ? 0 : k); }); });
+    document.getElementById('mNext').onclick = function () { set(step >= 5 ? 1 : step + 1); };
+    document.getElementById('mAll').onclick = function () { set(0); };
+  })();
+
+  /* ---------- slide 23: research relay ---------- */
+  var PERSON = '<svg viewBox="0 0 24 28"><use href="#i-person"/></svg>';
+  var AGENT = '<svg viewBox="0 0 24 24"><use href="#i-agent"/></svg>';
+  (function () {
+    var STAGES = [
+      ['Scope', 'Manager with the client', 2, 'A manager, with the client', 'The question, the hypotheses and what good looks like', 'Framing: is this the right question?'],
+      ['Gather', 'Analyst', 1, 'An analyst', 'Desk research, data pulls and interviews, over days or weeks', 'Which sources to trust, and what to leave out'],
+      ['Analyse', 'Analyst and associate', 2, 'An analyst and an associate', 'The model, the tables, the case studies', 'Method and assumptions, known in every detail'],
+      ['Synthesise', 'Associate and manager', 2, 'An associate and a manager', 'Insights and a storyline from the findings', 'What it means for this client'],
+      ['Review', 'Manager and director', 2, 'A manager, then a director', 'Comments on the deck; work sent back to redo', 'Does it hold? Mostly checked once, near the end'],
+      ['Deliver', 'The team', 3, 'The team', 'The presentation, and answers to the client\'s questions', 'Standing behind it: the person who did it can explain it']
+    ];
+    var relay = document.getElementById('relay'), det = document.getElementById('relayDetail');
+    function show(i) {
+      Array.prototype.forEach.call(relay.children, function (b, j) { b.setAttribute('aria-selected', String(i === j)); });
+      var s = STAGES[i];
+      det.innerHTML = '<div><div class="label">Who</div><p>' + s[3] + '</p></div><div><div class="label">What they produce</div><p>' + s[4] + '</p></div><div><div class="label">Where the judgement sits</div><p>' + s[5] + '</p></div>';
+    }
+    STAGES.forEach(function (s, i) {
+      var icons = ''; for (var k = 0; k < s[2]; k++) icons += PERSON;
+      var b = el('button', '', '<div class="who-ico">' + icons + '</div><h3>' + s[0] + '</h3><div class="role">' + s[1] + '</div>');
+      b.type = 'button'; b.setAttribute('role', 'tab'); b.onclick = function () { show(i); };
+      relay.appendChild(b);
+    });
+    show(1);
+  })();
+
+  /* ---------- slide 24: agents and gates ---------- */
+  (function () {
+    var ITEMS = [
+      { t: 'st', who: 'person', name: 'Scope', role: 'Person', head: 'Scope · a person owns the question', own: 'Manager, with the client', body: '<p>Same as before: a person frames the question, the hypotheses and what good looks like. This becomes the agent’s written brief.</p>' },
+      { t: 'gt', n: 1, gl: 'Brief sign-off', head: 'Gate 1 · Brief sign-off', own: 'Owner: manager · about 30 min', body: '<ul><li>Is the question right, and is it the client’s question?</li><li>Which sources are in and out of bounds?</li><li>What does “done” look like? Write it into the agent’s instructions (claude.md).</li></ul>', bad: 'The agent answers a question nobody asked, confidently.' },
+      { t: 'st', who: 'agent', name: 'Gather', role: 'Agent', head: 'Gather · the agent as researcher', own: 'Agent, logging every source', body: '<p>Searches, pulls data and summarises sources in minutes, logging every source it used so a person can follow the trail.</p>' },
+      { t: 'gt', n: 2, gl: 'Source check', head: 'Gate 2 · Source check', own: 'Owner: analyst or associate · about 1 hour', body: '<ul><li>Do the sources exist, and do they say what the agent says they say?</li><li>Are they current, relevant and allowed (no client or personal data)?</li><li>Spot-read a sample, not just the summary.</li></ul>', bad: 'A made-up or out-of-date source flows straight into the analysis.' },
+      { t: 'st', who: 'agent', name: 'Analyse', role: 'Agent', head: 'Analyse · the agent as analyst', own: 'Agent, following the brief', body: '<p>Runs the analysis per the instructions and returns an alpha model in hours, not weeks.</p>' },
+      { t: 'gt', n: 3, gl: 'Method check', head: 'Gate 3 · Method check', own: 'Owner: associate · about 1 hour', body: '<ul><li>Reproduce one key number by hand.</li><li>Test the assumptions: would we have made the same ones?</li><li>What did it miss? Nuance and local context are where agents fall short.</li></ul>', bad: 'A wrong assumption is buried in a chart nobody rebuilt.' },
+      { t: 'st', who: 'agent', name: 'Draft insights', role: 'Agent + person', head: 'Draft insights · agent proposes, person decides', own: 'Agent drafts; associate and manager rewrite', body: '<p>The agent proposes findings and a storyline. A person decides what it means for this client and rewrites it in our voice.</p>' },
+      { t: 'gt', n: 4, gl: 'Final sign-off', head: 'Gate 4 · Final sign-off', own: 'Owner: manager or director', body: '<ul><li>Is every claim traceable to a checked source?</li><li>Could the team answer a client’s question on this without the AI in the room?</li><li>Would I put my name to it?</li></ul>', bad: 'Generic, unverified insight goes out under our name.' },
+      { t: 'st', who: 'person', name: 'Deliver', role: 'People', last: true, head: 'Deliver · people answer for it', own: 'The team', body: '<p>The team presents and answers the client’s questions. Because people checked each stage, someone can explain every number.</p>' }
+    ];
+    var slide = document.getElementById('agents'), flow = document.getElementById('flow'), det = document.getElementById('flowDetail');
+    var tog = document.getElementById('gateToggle'), togLab = document.getElementById('gateToggleLab');
+    var sel = 1, gates = true;
+    function render() {
+      Array.prototype.forEach.call(flow.children, function (b, j) { b.setAttribute('aria-selected', String(j === sel)); });
+      var it = ITEMS[sel];
+      if (!gates) {
+        var body;
+        if (it.t === 'gt') body = '<p><strong>Without this gate:</strong> ' + it.bad + '</p>';
+        else if (it.who === 'agent') body = '<p>Nobody checks this stage. Its output passes straight to the next one, errors and all.</p>';
+        else if (it.last) body = '<p>The deck is fast and polished, but nobody checked the sources, the method or the claims. When the client asks a question, <strong>who answers it?</strong> “An analyst can hardly refer to ChatGPT.”</p>';
+        else body = it.body;
+        det.innerHTML = '<div><div class="label">Control gates off</div><h3>' + it.head + '</h3></div><div>' + body + '</div>';
+      } else {
+        det.innerHTML = '<div><div class="label">' + (it.t === 'gt' ? 'Human control gate' : (it.who === 'agent' ? 'Agent stage' : 'People stage')) + '</div><h3>' + it.head + '</h3><div class="own">' + it.own + '</div></div><div>' + it.body + '</div>';
+      }
+    }
+    ITEMS.forEach(function (it, i) {
+      var b;
+      if (it.t === 'st') b = el('button', 'st ' + it.who + (it.last ? ' last' : ''), '<span class="warnbadge" title="Unchecked">!</span><div class="who-ico">' + (it.who === 'agent' ? AGENT : PERSON) + '</div><h3>' + it.name + '</h3><div class="role">' + it.role + '</div>');
+      else b = el('button', 'gt', '<span class="dia"></span><span class="n">' + it.n + '</span><span class="gl">' + it.gl + '</span>');
+      b.type = 'button'; b.setAttribute('aria-label', it.head);
+      b.onclick = function () { sel = i; render(); };
+      flow.appendChild(b);
+    });
+    tog.onclick = function () {
+      gates = !gates; slide.classList.toggle('nogates', !gates);
+      tog.setAttribute('aria-checked', String(gates)); togLab.textContent = gates ? 'Control gates on' : 'Control gates off';
+      if (!gates) sel = ITEMS.length - 1;
+      render();
+    };
+    render();
+  })();
+
+  /* ---------- lessons ---------- */
+  (function () {
+    var TRACKS = { build: 'Build', auto: 'Automate', well: 'Use well' };
+    var L = [
+      [1, 'Building HTML pages with AI', 'build', 1, 'Turn notes or data into a polished, interactive single-file page, like this deck.', '8 of 13 colleagues want to learn to build tools or agents.'],
+      [2, 'Sharing and hosting HTML', 'build', 2, 'Publish a page privately, share a link, use GitHub Pages, and know when hosting needs the Lab.', 'Both live tools in this deck are hosted pages.'],
+      [3, 'Automation principles', 'auto', 3, 'Spot a task worth automating, and set its inputs, outputs, trigger and the point where a person checks.', '11 of 13 colleagues want to learn to automate workflows.'],
+      [4, 'Data structures for AI', 'auto', 4, 'Shape data as tidy tables, CSV and JSON so AI works with it reliably.', '5 of 13 want to learn data analysis with AI, and every automation starts with well-shaped data.'],
+      [5, 'Claude Code', 'build', 5, 'Set up Claude Code in VS Code, write a claude.md, build with tests, and keep token costs in check.', 'Case study A was built this way, and the $200 lesson shows why costs matter.'],
+      [6, 'Handing AI longer tasks', 'auto', 6, 'Have an AI assistant work through multi-step jobs with files, documents and scheduled tasks.', 'Time is the biggest barrier, named by 7 of 13.'],
+      [7, 'Writing a brief AI can follow', 'well', 7, 'Write a decisions file and an instructions file: the question, process, output and success criteria.', 'Case study B went from idea to alpha model in about two hours because the brief was clear.'],
+      [8, 'Checking AI output', 'well', 8, 'Run a source check and a method check: confirm sources exist, reproduce a number, and spot what is missing.', 'Accountability for accuracy was one of the strongest comment themes.']
+    ];
+    var grid = document.getElementById('lGrid'), det = document.getElementById('lDetail'), fil = document.getElementById('lFilter');
+    var sel = 0, track = 'all';
+    function ord(n) { return n + (n === 1 ? 'st' : n === 2 ? 'nd' : n === 3 ? 'rd' : 'th'); }
+    function render() {
+      Array.prototype.forEach.call(grid.children, function (b, j) {
+        b.setAttribute('aria-selected', String(j === sel)); b.tabIndex = j === sel ? 0 : -1;
+        b.classList.toggle('off', track !== 'all' && L[j][2] !== track);
+      });
+      grid.classList.toggle('filtered', track !== 'all');
+      Array.prototype.forEach.call(fil.querySelectorAll('button'), function (b) { b.setAttribute('aria-pressed', String(b.getAttribute('data-t') === track)); });
+      var l = L[sel];
+      det.innerHTML = '<div class="label">' + TRACKS[l[2]] + ' · Session ' + l[3] + ' of 8</div><h3>' + l[1] + '</h3>' +
+        '<div class="k">You’ll be able to</div><p>' + l[4] + '</p><div class="k">Why it’s on the list</div><p>' + l[5] + '</p>';
+    }
+    L.forEach(function (l, i) {
+      var b = el('button', '', '<span class="top"><span class="num">' + l[0] + '</span><span class="trk ' + l[2] + '">' + TRACKS[l[2]] + '</span></span><b>' + l[1] + '</b>');
+      b.type = 'button'; b.setAttribute('role', 'tab');
+      b.onclick = function () { sel = i; render(); };
+      grid.appendChild(b);
+    });
+    [['all', 'All'], ['build', 'Build'], ['auto', 'Automate'], ['well', 'Use well']].forEach(function (t) {
+      var n = t[0] === 'all' ? L.length : L.filter(function (l) { return l[2] === t[0]; }).length;
+      var b = el('button', '', t[1] + ' (' + n + ')'); b.type = 'button'; b.setAttribute('data-t', t[0]);
+      b.onclick = function () {
+        track = t[0];
+        if (track !== 'all' && L[sel][2] !== track) { for (var k = 0; k < L.length; k++) if (L[k][2] === track) { sel = k; break; } }
+        render();
+      };
+      fil.appendChild(b);
+    });
+    render();
+  })();
+
+  /* ---------- teach-ins: copy email ---------- */
+  (function () {
+    var btn = document.getElementById('copyMail'), note = document.getElementById('copyNote'), addr = document.getElementById('mailAddr');
+    function selectAddr() { try { var r = document.createRange(); r.selectNodeContents(addr); var s = window.getSelection(); s.removeAllRanges(); s.addRange(r); } catch (e) {} }
+    btn.onclick = function () {
+      var text = addr.textContent.trim();
+      try {
+        navigator.clipboard.writeText(text).then(function () { note.textContent = 'Copied'; }, function () { selectAddr(); note.textContent = 'Selected: press Ctrl+C or Cmd+C'; });
+      } catch (e) { selectAddr(); note.textContent = 'Selected: press Ctrl+C or Cmd+C'; }
+    };
+  })();
+
+  var start = parseInt((location.hash || '').replace('#', ''), 10);
+  slides[0].classList.add('active');
+  go(isNaN(start) ? 0 : start - 1);
+  window.addEventListener('hashchange', function () { var n = parseInt((location.hash || '').replace('#', ''), 10); if (!isNaN(n) && n - 1 !== cur) go(n - 1); });
+  fit();
+})();
+</script>
+
+</body></html>
